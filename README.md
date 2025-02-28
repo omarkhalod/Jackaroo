@@ -16,7 +16,7 @@ Before you begin, make sure you have:
 1. Open a terminal (**Command Prompt, Git Bash, or PowerShell**).  
 2. Run the following command:  
    ```bash
-   git clone https://github.com/<username>/<repo-name>.git
+   git clone https://github.com/omarkhalod/Jackaroo.git
    ```
 
 ## 3 If prompted for a password, use a Personal Access Token (PAT) instead of your GitHub password.
