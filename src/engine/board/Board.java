@@ -43,7 +43,11 @@ public class Board implements BoardManager{
 	
 	
 	public int getSplitDistance() {
-		return splitDistance;
+		return this.splitDistance;
+	}
+	
+	public void setSplitDistance(int splitDistance){
+		this.splitDistance = splitDistance;
 	}
 	public ArrayList<Cell> getTrack(){
 		return track;
