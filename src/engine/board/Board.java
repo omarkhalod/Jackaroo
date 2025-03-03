@@ -42,9 +42,13 @@ public class Board implements BoardManager{
 	}
 	
 	
-	@Override
 	public int getSplitDistance() {
-		// TODO Auto-generated method stub
-		return 0;
+		return splitDistance;
+	}
+	public ArrayList<Cell> getTrack(){
+		return track;
+	}
+	public ArrayList<SafeZone> getSafeZones(){
+		return safeZones;
 	}
 }

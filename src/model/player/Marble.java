@@ -7,8 +7,7 @@ public class Marble {
 	public Marble (Colour colour){
 		this.colour = colour;
 	}
-	Colour getColour(){ 
+	public Colour getColour(){ 
 		return colour;
 	}
-	
 }

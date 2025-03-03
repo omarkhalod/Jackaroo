@@ -32,8 +32,14 @@ public class Game implements GameManager{
 		players.add(new CPU("CPU 2", colours.get(2), board));
 		players.add(new CPU("CPU 3", colours.get(3), board));
 		
-		// stopped at 4.21.2.5
-		
 	}
-	
+	public Board getBoard() {
+		return board;
+	}
+	public ArrayList<Player> getPlayers(){
+		return players;
+	}
+	public ArrayList<Card> getFirePit(){
+		return firePit;
+	}
 }

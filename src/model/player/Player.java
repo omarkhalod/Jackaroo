@@ -38,8 +38,8 @@ public class Player {
 		return hand;
 	}
 	
-	public void setHand(){
-		hand = new ArrayList<Card>();
+	public void setHand(ArrayList<Card> hand){
+		this.hand=hand;
 	}
 
 	public ArrayList<Marble> getMarbles() {
