@@ -51,4 +51,7 @@ public class Board implements BoardManager{
 	public ArrayList<SafeZone> getSafeZones(){
 		return safeZones;
 	}
+	public void setSplitDistance(int splitDistance) {
+		this.splitDistance=splitDistance;
+	}
 }

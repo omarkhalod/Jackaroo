@@ -23,7 +23,6 @@ public class Player {
 		
 		this.selectedCard = null;
 		
-		
 	}
 
 	public String getName() {

@@ -9,53 +9,51 @@ public class Deck {
 	private static final String CARDS_FILE="Cards.csv";
 	private static ArrayList<Card> cardsPool;
 	public static void loadCardPool(BoardManager boardManager,GameManager gameManager) throws IOException {
+		cardsPool=new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(CARDS_FILE))) {
             String line;
-            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 int code=Integer.parseInt(values[0]);
                 int frequency=Integer.parseInt(values[1]);
                 String name=values[2];
                 String description=values[3];
-                Card current;
-                if(code==14) {
-                	current=new Burner(name,description,boardManager,gameManager);
-                }else if(code==15) {
-                	current=new Saver(name,description,boardManager,gameManager);
-                }else {
-                	int rank=Integer.parseInt(values[4]);
-                	Suit suit;
-                	if(values[5].equals("SPADE"))
-                		suit=Suit.SPADE;
-                	else if(values[5].equals("HEART"))
-                		suit=Suit.HEART;
-                	else if(values[5].equals("DIAMOND"))
-                		suit=Suit.DIAMOND;
-                	else
-                		suit=Suit.CLUB;
-                	if(code==1) {
-                		current=new Ace(name,description,suit,boardManager,gameManager);
-                	}else if(code==4) {
-                		current=new Four(name,description,suit,boardManager,gameManager);
-                	}else if(code==5) {
-                		current=new Five(name,description,suit,boardManager,gameManager);
-                	}else if(code==7) {
-                		current=new Seven(name,description,suit,boardManager,gameManager);
-                	}else if(code==10){
-                		current=new Ten(name,description,suit,boardManager,gameManager);
-                	}else if(code==11) {
-                		current=new Jack(name,description,suit,boardManager,gameManager);
-                	}else if(code==12) {
-                		current=new Queen(name,description,suit,boardManager,gameManager);
-                	}else if(code==13) {
-                		current=new King(name,description,suit,boardManager,gameManager);
-                	}else {
-                		current=new Standard(name,description,rank,suit,boardManager,gameManager);
-                	}
-                }
                 for(int i=0;i<frequency;i++) {
-                	cardsPool.add(current);
+                	if(code==14) {
+                		cardsPool.add(new Burner(name,description,boardManager,gameManager));
+                	}else if(code==15) {
+                		cardsPool.add(new Saver(name,description,boardManager,gameManager));
+                	}else {
+                		int rank=Integer.parseInt(values[4]);
+                		Suit suit;
+                		if(values[5].equals("SPADE"))
+                			suit=Suit.SPADE;
+                		else if(values[5].equals("HEART"))
+                			suit=Suit.HEART;
+                		else if(values[5].equals("DIAMOND"))
+                			suit=Suit.DIAMOND;
+                		else
+                			suit=Suit.CLUB;
+                		if(code==1) {
+                			cardsPool.add(new Ace(name,description,suit,boardManager,gameManager));
+                		}else if(code==4) {
+                			cardsPool.add(new Four(name,description,suit,boardManager,gameManager));
+                		}else if(code==5) {
+                			cardsPool.add(new Five(name,description,suit,boardManager,gameManager));
+                		}else if(code==7) {
+                			cardsPool.add(new Seven(name,description,suit,boardManager,gameManager));
+                		}else if(code==10){
+                			cardsPool.add(new Ten(name,description,suit,boardManager,gameManager));
+                		}else if(code==11) {
+                			cardsPool.add(new Jack(name,description,suit,boardManager,gameManager));
+                		}else if(code==12) {
+                			cardsPool.add(new Queen(name,description,suit,boardManager,gameManager));
+                		}else if(code==13) {
+                			cardsPool.add(new King(name,description,suit,boardManager,gameManager));
+                		}else {
+                			cardsPool.add(new Standard(name,description,rank,suit,boardManager,gameManager));
+                		}
+                	}
                 }
             }
         } catch (IOException e) {
