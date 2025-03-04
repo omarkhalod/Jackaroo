@@ -65,9 +65,6 @@ public class Deck {
                 	}
                 }
             }
-            for(Card i:cardsPool) {
-            	System.out.println(i.getDescription());
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
