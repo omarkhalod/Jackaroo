@@ -1,5 +1,6 @@
 package model.card;
 import java.util.*;
+import java.util.regex.*;
 import engine.GameManager;
 import engine.board.BoardManager;
 import model.card.standard.*;
@@ -13,24 +14,32 @@ public class Deck {
 		try (BufferedReader br = new BufferedReader(new FileReader(CARDS_FILE))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                int code=Integer.parseInt(values[0]);
-                int frequency=Integer.parseInt(values[1]);
-                String name=values[2];
-                String description=values[3];
+            	List<String> values = new ArrayList<>();
+                Matcher matcher = Pattern.compile("\"([^\"]*)\"|([^,]+)").matcher(line);
+                while (matcher.find()) {
+                    if (matcher.group(1) != null) {
+                        values.add(matcher.group(1));
+                    } else {
+                        values.add(matcher.group(2).trim());
+                    }
+                }
+                int code=Integer.parseInt(values.get(0));
+                int frequency=Integer.parseInt(values.get(1));
+                String name=values.get(2);
+                String description=values.get(3);
                 for(int i=0;i<frequency;i++) {
                 	if(code==14) {
                 		cardsPool.add(new Burner(name,description,boardManager,gameManager));
                 	}else if(code==15) {
                 		cardsPool.add(new Saver(name,description,boardManager,gameManager));
                 	}else {
-                		int rank=Integer.parseInt(values[4]);
+                		int rank=Integer.parseInt(values.get(4));
                 		Suit suit;
-                		if(values[5].equals("SPADE"))
+                		if(values.get(5).equals("SPADE"))
                 			suit=Suit.SPADE;
-                		else if(values[5].equals("HEART"))
+                		else if(values.get(5).equals("HEART"))
                 			suit=Suit.HEART;
-                		else if(values[5].equals("DIAMOND"))
+                		else if(values.get(5).equals("DIAMOND"))
                 			suit=Suit.DIAMOND;
                 		else
                 			suit=Suit.CLUB;
@@ -56,6 +65,9 @@ public class Deck {
                 	}
                 }
             }
+            for(Card i:cardsPool) {
+            	System.out.println(i.getDescription());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +75,7 @@ public class Deck {
 	public static ArrayList<Card> drawCards(){
 		ArrayList<Card> hand=new ArrayList<>();
 		Collections.shuffle(cardsPool);
-		for(int i=0;i<4;i++) {
+		for(int i=0;i<4&&!cardsPool.isEmpty();i++) {
 			hand.add(cardsPool.get(0));
 			cardsPool.remove(0);
 		}
