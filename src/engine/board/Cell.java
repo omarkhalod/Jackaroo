@@ -11,8 +11,8 @@ public class Cell {
 	
 	public Cell(CellType cellType){
 		this.cellType = cellType;
-		marble = null;
-		trap = false;
+		this.marble = null;
+		this.trap = false;
 	}
 
 
