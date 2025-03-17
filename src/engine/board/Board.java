@@ -23,7 +23,7 @@ public class Board implements BoardManager{
 			this.track.get(i + 23).setCellType(CellType.ENTRY);
 		}
 		
-		assignTrapCell();
+		for(int i = 0 ; i < 8 ; i++) assignTrapCell();
 		
 		for (int i = 0; i < 4; i++) safeZones.add(new SafeZone(colourOrder.get(i)));
 		
@@ -31,17 +31,12 @@ public class Board implements BoardManager{
 	
 	private void assignTrapCell(){
 		Random RNG = new Random();
-		
-		for (int i = 0; i < 8; i++){
-			int idx = RNG.nextInt(100);
-			while (this.track.get(idx).getCellType() != CellType.NORMAL && !this.track.get(idx).isTrap()){
-				idx = RNG.nextInt(100);
-			}
-			this.track.get(idx).setTrap(true);
+		int idx=RNG.nextInt(100);
+		while ((this.track.get(idx).getCellType() != CellType.NORMAL) || this.track.get(idx).isTrap()){
+			idx = RNG.nextInt(100);
 		}
+		this.track.get(idx).setTrap(true);
 	}
-	
-	
 	public int getSplitDistance() {
 		return this.splitDistance;
 	}
