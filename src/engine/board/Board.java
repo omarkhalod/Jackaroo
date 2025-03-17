@@ -28,7 +28,6 @@ public class Board implements BoardManager{
 		for (int i = 0; i < 4; i++) safeZones.add(new SafeZone(colourOrder.get(i)));
 		
 	}
-	
 	private void assignTrapCell(){
 		Random RNG = new Random();
 		int idx=RNG.nextInt(100);
