@@ -133,7 +133,7 @@ public class Board implements BoardManager{
 		}
 	}
 	private void validateSwap(Marble marble_1, Marble marble_2) throws IllegalSwapException{
-		if(!marbleInTrack(marble_1)||!marbleInTrack(marble_2)) throw new IllegalSwapException();
+		if(getPositionInPath(track,marble_1)==-1||getPositionInPath(track,marble_2)==-1) throw new IllegalSwapException();
 		Colour colour=gameManager.getActivePlayerColour();
 		if(marble_1.getColour()==colour) {
 			int base=getBasePosition(marble_2.getColour());
@@ -145,12 +145,6 @@ public class Board implements BoardManager{
 				throw new IllegalSwapException();
 		}
 	}
-	private boolean marbleInTrack(Marble marble) {
-		for(Cell cell:track) {
-			if(cell.getMarble()==marble) return true;
-		}
-		return false;
-	}
 	private void validateDestroy(int positionInPath) throws IllegalDestroyException{
 		if(positionInPath==-1) throw new IllegalDestroyException();
 		Marble marble=track.get(positionInPath).getMarble();
@@ -159,7 +153,7 @@ public class Board implements BoardManager{
 	}
 	private void validateFielding(Cell occupiedBaseCell) throws CannotFieldException{
 		Colour colour=gameManager.getActivePlayerColour();
-		if(occupiedBaseCell.getMarble()!=null&&occupiedBaseCell.getMarble().getColour()==colour)
+		if(occupiedBaseCell.getMarble().getColour()==colour)
 			throw new CannotFieldException();
 	}
 	private void validateSaving(int positionInSafeZone, int positionOnTrack) throws InvalidMarbleException{
@@ -173,33 +167,28 @@ public class Board implements BoardManager{
 	}
 	public void swap(Marble marble_1, Marble marble_2) throws IllegalSwapException{
 		validateSwap(marble_1,marble_2);
-		Cell cell1=track.get(0);
-		Cell cell2=track.get(0);
-		for(Cell cell:track) {
-			if(cell.getMarble()==marble_1)
-				cell1=cell;
-			if(cell.getMarble()==marble_2)
-				cell2=cell;
-		}
+		int pos1=getPositionInPath(track,marble_1);
+		int pos2=getPositionInPath(track,marble_2);
+		Cell cell1=track.get(pos1);
+		Cell cell2=track.get(pos2);
 		cell1.setMarble(marble_2);
 		cell2.setMarble(marble_1);
 	}
 	public void destroyMarble(Marble marble) throws IllegalDestroyException{
+		int positionInTrack=getPositionInPath(track,marble);
 		if(marble.getColour()!=gameManager.getActivePlayerColour()) {
-			validateDestroy(getPositionInPath(track,marble));
+			validateDestroy(positionInTrack);
 		}
-		for(Cell cell:track) {
-			if(cell.getMarble()==marble) {
-				cell.setMarble(null);
-				break;
-			}
-		}
+		track.get(positionInTrack).setMarble(null);
 		gameManager.sendHome(marble);
 	}
 	public void sendToBase(Marble marble) throws CannotFieldException,IllegalDestroyException{
 		int baseIdx=getBasePosition(marble.getColour());
 		Cell base=track.get(baseIdx);
-		validateFielding(base);
+		if(base.getMarble()!=null) {
+			validateFielding(base);
+			destroyMarble(base.getMarble());
+		}
 		base.setMarble(marble);
 	}
 	public void sendToSafe(Marble marble) throws InvalidMarbleException{
