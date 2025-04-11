@@ -78,4 +78,12 @@ public class Deck {
 		}
 		return hand;
 	}
+	
+	public static void refillPool(ArrayList<Card> cards){
+		cardsPool.addAll(cards);
+	}
+	
+	public static int getPoolSize(){
+		return cardsPool.size();
+	}
 }

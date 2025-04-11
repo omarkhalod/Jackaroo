@@ -1,10 +1,16 @@
 package engine.board;
 import java.util.ArrayList;
+
 import engine.*;
+
 import java.util.Random;
+
 import model.Colour;
 import model.player.Marble;
+import model.player.Player;
 import exception.*;
+
+
 public class Board implements BoardManager{
 	private final GameManager gameManager;
 	private final ArrayList<Cell> track;
@@ -15,7 +21,7 @@ public class Board implements BoardManager{
 		this.gameManager = gameManager;
 		this.track = new ArrayList<Cell>();
 		this.safeZones = new ArrayList<SafeZone>();
-		this.splitDistance = 3;
+//		this.splitDistance = 3;
 		
 		for (int i = 0; i < 100; i++) this.track.add(new Cell(CellType.NORMAL));
 		
@@ -75,15 +81,15 @@ public class Board implements BoardManager{
 		int trackIdx=getPositionInPath(track, marble);
 		if(trackIdx!=-1) {
 			int entry=getEntryPosition(marbleColour);
-			if(steps==-4) {
-				for(int i=0;i<=4;i++) {
-					int idx=((trackIdx-i)%100+100)%100;
+			if(steps==4){ // changed -4 to 4
+				for(int i=1;i<=4;i++) { //changed start from 0 to 1
+					int idx=(trackIdx-i+100)%100; // zabatna el araf beta3 osama
 					fullPath.add(track.get(idx));
 				}
 				return fullPath;
 			}else {
 				if(steps==5&&marbleColour!=playerColour) {
-					for(int i=0;i<=5;i++) {
+					for(int i=1;i<=5;i++) {
 						int idx=(trackIdx+i)%100;
 						if(track.get(idx).getMarble().getColour()==playerColour) {
 							throw new IllegalMovementException("Invalid move due to Self-Blocking.");
@@ -92,7 +98,7 @@ public class Board implements BoardManager{
 					}
 					return fullPath;
 				}
-				int entryDist=((entry-trackIdx)%100+100)%100;
+				int entryDist=((entry-trackIdx)+100)%100; // %100 + 100 -> +100 bas
 				int endDist=entryDist+4;
 				if(steps>endDist) throw new IllegalMovementException("Rank of the card played is too high.");
 				
@@ -123,6 +129,15 @@ public class Board implements BoardManager{
 			}
 		}
 		return fullPath;
+	}
+	
+	public boolean isValidSteps(Marble marble, int steps) throws IllegalMovementException{
+		try {
+			ArrayList<Cell> fullPath = validateSteps(marble, steps);
+			return true;
+		}
+		catch(Exception malakshda3wa){ return false;}
+				
 	}
 	private void validatePath(Marble marble,ArrayList<Cell> fullPath,boolean destroy) throws IllegalMovementException {
 		int cnt=0;
@@ -271,4 +286,16 @@ public class Board implements BoardManager{
 		return safeZones;
 	}
 
+	
+	public Cell getCellofMarble(Marble marble){
+		for (Cell cell: track)
+			if (cell.getMarble() == marble) return cell;
+		
+		for (Cell cell: getSafeZone(marble.getColour()))
+				if (cell.getMarble() == marble) return cell;
+		
+		return null;
+		
+	}
+	
 }
