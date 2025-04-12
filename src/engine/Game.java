@@ -118,33 +118,69 @@ public class Game implements GameManager{
 	}
 	@Override
 	public void sendHome(Marble marble) {
-		// TODO Auto-generated method stub
+		players.get(currentPlayerIndex).regainMarble(marble);
+		
+		try {
+			board.destroyMarble(marble);
+		} catch (IllegalDestroyException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	@Override
 	public void fieldMarble() throws CannotFieldException,
 			IllegalDestroyException {
-		// TODO Auto-generated method stub
+		Marble marble = players.get(currentPlayerIndex).getOneMarble();
+		if(marble == null) throw new CannotFieldException("Can't do nigga YOU GOT NO MARBLESS ON THE FIELD");
+		//fielding the marble assuming its in the home zone into the base cell
+		board.sendToBase(marble);
+		//Cant change the player marble array so i wrote this weh 5alas
+		//90% sure this will cause an error as destroymarble dose not check home zone
+		board.destroyMarble(marble);
+		
 		
 	}
 	@Override
 	public void discardCard(Colour colour) throws CannotDiscardException {
-		// TODO Auto-generated method stub
+		//get index of the player with colour colour
+		int idx = -1;
+		for(int i = 0; i < players.size(); i++) {
+			if(players.get(i).getColour().equals(colour)) {
+				idx = i;
+				break;
+			}
+		}
+		Player curPlayer = players.get(idx);
+		ArrayList<Card> hand = curPlayer.getHand();
+		
+		//remove random something
+		if (!hand.isEmpty()) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(hand.size());
+            hand.remove(randomIndex);
+        } else {
+            throw new CannotDiscardException("You got no cards nigga");
+        }
+		//Update the hand in the players class
+		curPlayer.setHand(hand);
 		
 	}
 	@Override
 	public void discardCard() throws CannotDiscardException {
-		// TODO Auto-generated method stub
-		
+		//select random player
+		Random random = new Random();
+        int randomIndex = random.nextInt(players.size());
+        //Might have to check if the random players hand is not empty
+        discardCard(players.get(randomIndex).getColour());
 	}
 	@Override
 	public Colour getActivePlayerColour() {
-		// TODO Auto-generated method stub
-		return null;
+		return players.get(currentPlayerIndex).getColour();
+		
 	}
 	@Override
 	public Colour getNextPlayerColour() {
-		// TODO Auto-generated method stub
-		return null;
+		int next_idx = (currentPlayerIndex + 1) % players.size();
+		return players.get(next_idx).getColour();
 	}
 }
