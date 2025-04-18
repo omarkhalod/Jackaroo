@@ -1,16 +1,11 @@
+
 package engine.board;
 import java.util.ArrayList;
-
 import engine.*;
-
 import java.util.Random;
-
 import model.Colour;
 import model.player.Marble;
-import model.player.Player;
 import exception.*;
-
-
 public class Board implements BoardManager{
 	private final GameManager gameManager;
 	private final ArrayList<Cell> track;
@@ -21,7 +16,7 @@ public class Board implements BoardManager{
 		this.gameManager = gameManager;
 		this.track = new ArrayList<Cell>();
 		this.safeZones = new ArrayList<SafeZone>();
-//		this.splitDistance = 3;
+		this.splitDistance = 3;
 		
 		for (int i = 0; i < 100; i++) this.track.add(new Cell(CellType.NORMAL));
 		
@@ -81,24 +76,24 @@ public class Board implements BoardManager{
 		int trackIdx=getPositionInPath(track, marble);
 		if(trackIdx!=-1) {
 			int entry=getEntryPosition(marbleColour);
-			if(steps==4){ // changed -4 to 4
-				for(int i=1;i<=4;i++) { //changed start from 0 to 1
-					int idx=(trackIdx-i+100)%100; // zabatna el araf beta3 osama
+			if(steps==-4) {
+				for(int i=0;i<=4;i++) {
+					int idx=((trackIdx-i)%100+100)%100;
 					fullPath.add(track.get(idx));
 				}
 				return fullPath;
 			}else {
-				if(steps==5&&marbleColour!=playerColour) {
-					for(int i=1;i<=5;i++) {
+				if(marbleColour!=playerColour) {
+					for(int i=0;i<=steps;i++) {
 						int idx=(trackIdx+i)%100;
-						if(track.get(idx).getMarble().getColour()==playerColour) {
+						if(track.get(idx).getMarble()!=null&&track.get(idx).getMarble().getColour()==playerColour) {
 							throw new IllegalMovementException("Invalid move due to Self-Blocking.");
 						}
 						fullPath.add(track.get(idx));
 					}
 					return fullPath;
 				}
-				int entryDist=((entry-trackIdx)+100)%100; // %100 + 100 -> +100 bas
+				int entryDist=((entry-trackIdx)%100+100)%100;
 				int endDist=entryDist+4;
 				if(steps>endDist) throw new IllegalMovementException("Rank of the card played is too high.");
 				
@@ -124,38 +119,33 @@ public class Board implements BoardManager{
 			if(steps==-4) throw new IllegalMovementException("Cannot move backwards in a safe zone.");
 			if(steps>3-safeIdx) throw new IllegalMovementException("Rank of the card played is too high.");
 			ArrayList<Cell> safe=getSafeZone(playerColour);
-			for(int i=0;i<steps;i++) {
+			for(int i=0;i<=steps;i++) {
 				fullPath.add(safe.get(i));
 			}
 		}
 		return fullPath;
 	}
-	
-	public boolean isValidSteps(Marble marble, int steps) throws IllegalMovementException{
-		try {
-			ArrayList<Cell> fullPath = validateSteps(marble, steps);
-			return true;
-		}
-		catch(Exception malakshda3wa){ return false;}
-				
-	}
 	private void validatePath(Marble marble,ArrayList<Cell> fullPath,boolean destroy) throws IllegalMovementException {
 		int cnt=0;
 		ArrayList<Cell> safeZone=getSafeZone(marble.getColour());
 		Cell target=fullPath.get(fullPath.size()-1);
+		int id=0;
+		boolean enter=false;
 		for(Cell cell:fullPath) {
-			if(cell.getMarble()==marble) continue;
+			if(id==0) {
+				id++;
+				continue;
+			}
 			if(cell.getMarble()!=null&&cell!=target) cnt++;
-			if(cell.getMarble()!=null&&cell.getMarble().getColour()==marble.getColour()&&!destroy) 
+			if(cell.getMarble()!=null&&cell.getMarble().getColour()==gameManager.getActivePlayerColour()&&!destroy) 
 				throw new IllegalMovementException("Inavlid move due to Self-Blocking.");
-			if(cell.getMarble()!=null&&safeZone.contains(cell)) 
+			if(cell.getCellType()==CellType.SAFE&&cell.getMarble()!=null)
 				throw new IllegalMovementException("Inavlid move due to Self-Blocking.");
 			if(cnt>1&&!destroy) throw new IllegalMovementException("Inavlid move due to Path Blockage.");
-			if(safeZone.contains(cell)) {
-				int entry=getEntryPosition(marble.getColour());
-				if(track.get(entry).getMarble()!=null&&track.get(entry).getMarble()!=marble&&!destroy)
-					throw new IllegalMovementException("Invalid move due to Safe Zone Entry.");
-			}
+			if(cell.getCellType()==CellType.ENTRY&&cell.getMarble()!=null&&!destroy)
+				enter=true;
+			if(enter&&cell.getCellType()==CellType.SAFE)
+				throw new IllegalMovementException("Invalid move to Safe Zone Entry");
 			if(cell.getMarble()!=null) {
 				int base=getBasePosition(cell.getMarble().getColour());
 				if(cell==track.get(base))
@@ -189,22 +179,22 @@ public class Board implements BoardManager{
 		}
 	}
 	private void validateSwap(Marble marble_1, Marble marble_2) throws IllegalSwapException{
-		if(getPositionInPath(track,marble_1)==-1||getPositionInPath(track,marble_2)==-1) throw new IllegalSwapException();
+		if(getPositionInPath(track,marble_1)==-1||getPositionInPath(track,marble_2)==-1) throw new IllegalSwapException("Marbles are not on track");
 		Colour colour=gameManager.getActivePlayerColour();
 		if(marble_1.getColour()==colour) {
 			int base=getBasePosition(marble_2.getColour());
 			if(track.get(base).getMarble()==marble_2)
-				throw new IllegalSwapException();
+				throw new IllegalSwapException("Another marble is in base");
 		}else {
 			int base=getBasePosition(marble_1.getColour());
 			if(track.get(base).getMarble()==marble_1)
-				throw new IllegalSwapException();
+				throw new IllegalSwapException("Another marble is in base");
 		}
 	}
 	private void validateDestroy(int positionInPath) throws IllegalDestroyException{
 		if(positionInPath==-1) throw new IllegalDestroyException();
 		Marble marble=track.get(positionInPath).getMarble();
-		if(positionInPath==getBasePosition(marble.getColour()))
+		if(marble!=null&&positionInPath==getBasePosition(marble.getColour()))
 			throw new IllegalDestroyException();
 	}
 	private void validateFielding(Cell occupiedBaseCell) throws CannotFieldException{
@@ -232,6 +222,8 @@ public class Board implements BoardManager{
 	}
 	public void destroyMarble(Marble marble) throws IllegalDestroyException{
 		int positionInTrack=getPositionInPath(track,marble);
+		if(positionInTrack==-1)
+			throw new IllegalDestroyException();
 		if(marble.getColour()!=gameManager.getActivePlayerColour()) {
 			validateDestroy(positionInTrack);
 		}
@@ -248,12 +240,15 @@ public class Board implements BoardManager{
 		base.setMarble(marble);
 	}
 	public void sendToSafe(Marble marble) throws InvalidMarbleException{
-		validateSaving(getPositionInPath(getSafeZone(marble.getColour()),marble),getPositionInPath(track,marble));
+		int tr=getPositionInPath(track,marble);
+		int sf=getPositionInPath(getSafeZone(marble.getColour()),marble);
+		validateSaving(sf,tr);
 		int idx=RNG.nextInt(4);
 		ArrayList<Cell> safeZone=getSafeZone(marble.getColour());
 		while(safeZone.get(idx).getMarble()!=null)
 			idx=RNG.nextInt(4);
 		safeZone.get(idx).setMarble(marble);
+		track.get(tr).setMarble(null);
 	}
 	public ArrayList<Marble> getActionableMarbles(){
 		ArrayList<Marble> marbles=new ArrayList<>();
@@ -285,8 +280,6 @@ public class Board implements BoardManager{
 	public ArrayList<SafeZone> getSafeZones(){
 		return safeZones;
 	}
-
-	
 	public Cell getCellofMarble(Marble marble){
 		for (Cell cell: track)
 			if (cell.getMarble() == marble) return cell;
