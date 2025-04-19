@@ -116,7 +116,7 @@ public class Game implements GameManager{
 		Marble marble = players.get(currentPlayerIndex).getOneMarble();
 		if(marble == null) throw new CannotFieldException();
 		board.sendToBase(marble);
-		players.get(currentPlayerIndex).removeMarble(marble);
+		players.get(currentPlayerIndex).getMarbles().remove(0);
 	}
 	@Override
 	public void discardCard(Colour colour) throws CannotDiscardException {

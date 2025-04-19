@@ -193,12 +193,13 @@ public class Board implements BoardManager{
 	}
 	private void validateDestroy(int positionInPath) throws IllegalDestroyException{
 		if(positionInPath==-1) throw new IllegalDestroyException();
-		Marble marble=track.get(positionInPath).getMarble();
+		Marble marble=track.get(positionInPath).getMarble();  
 		if(marble!=null&&positionInPath==getBasePosition(marble.getColour()))
 			throw new IllegalDestroyException();
 	}
 	private void validateFielding(Cell occupiedBaseCell) throws CannotFieldException{
 		Colour colour=gameManager.getActivePlayerColour();
+		if(occupiedBaseCell.getMarble()==null) return;
 		if(occupiedBaseCell.getMarble().getColour()==colour)
 			throw new CannotFieldException();
 	}

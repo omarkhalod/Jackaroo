@@ -60,14 +60,6 @@ public class Player {
 			return marbles.get(0);
 		return null;
 	}
-	public void removeMarble(Marble marble) {
-		for(int i=0;i<marbles.size();i++) {
-			if(marbles.get(i)==marble) {
-				marbles.remove(i);
-				break;
-			}
-		}
-	}
 	 public void selectCard(Card card) throws InvalidCardException{
 		 if (hand.contains(card))
 			 selectedCard = card;
