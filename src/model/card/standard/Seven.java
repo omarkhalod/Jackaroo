@@ -28,10 +28,6 @@ public class Seven extends Standard{
 	
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 	InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles))
-			throw new InvalidMarbleException("Wrong marble colour");
-		if(!this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble size");
 		if (marbles.size() == 1)
 			boardManager.moveBy(marbles.get(0), 7, false);
 		else {

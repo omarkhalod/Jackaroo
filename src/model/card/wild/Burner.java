@@ -24,10 +24,6 @@ public class Burner extends Wild{
 	@Override
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 	InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles))
-			throw new InvalidMarbleException("Wrong marble colour");
-		if(!this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble size");
 		boardManager.destroyMarble(marbles.get(0));
 	}
 }

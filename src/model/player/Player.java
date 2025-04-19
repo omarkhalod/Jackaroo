@@ -90,6 +90,10 @@ public class Player {
 	 
 	 public void play() throws GameException{
 		 if(selectedCard==null) throw new InvalidCardException();
+		 if(!selectedCard.validateMarbleColours(selectedMarbles))
+			 throw new InvalidMarbleException("Wrong marble colour");
+		 if(!selectedCard.validateMarbleSize(selectedMarbles))
+			 throw new InvalidMarbleException("Wrong marble size");
 		 selectedCard.act(selectedMarbles);
 	 }
 } 

@@ -29,10 +29,6 @@ public class Standard extends Card{
 
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 			InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles))
-			throw new InvalidMarbleException("Wrong marble colour");
-		if(!this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble size");
 		boardManager.moveBy(marbles.get(0), rank, false);
 	}
 	
