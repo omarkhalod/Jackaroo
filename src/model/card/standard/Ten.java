@@ -23,15 +23,13 @@ public class Ten extends Standard{
 	}
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 	InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles) || !this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble colour or size nigga");
-		try{
-			if (marbles.size() == 0) gameManager.discardCard(gameManager.getNextPlayerColour());
-			else
-				boardManager.moveBy(marbles.get(0), 10, false);
-		}
-		catch(Exception e){
-			throw new IllegalMovementException("Illegal movement exception nigga");
-			}
+		if (!this.validateMarbleColours(marbles))
+			throw new InvalidMarbleException("Wrong marble colour");
+		if(!this.validateMarbleSize(marbles))
+			throw new InvalidMarbleException("Wrong marble size");
+		if (marbles.size() == 0)
+			gameManager.discardCard(gameManager.getNextPlayerColour());
+		else
+			boardManager.moveBy(marbles.get(0), 10, false);
 	}
 }

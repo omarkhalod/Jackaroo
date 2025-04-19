@@ -14,21 +14,18 @@ public class King extends Standard{
 			gameManager){
 		super(name, description, 13, suit, boardManager, gameManager);
 	}
-	
+	public boolean validateMarbleSize(ArrayList<Marble> marbles) {
+		return marbles.size() == 1|| marbles.size( )== 0;
+	}
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 	InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles) || !this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble colour or size nigga");
-		try{
-			if (boardManager.getCellofMarble(marbles.get(0)) != null){
-				boardManager.moveBy(marbles.get(0), 13, true);
-			}
-			else{
-				gameManager.fieldMarble();
-			}
-		}
-		catch(Exception e){
-			throw new IllegalMovementException("Illegal movement exception nigga");
-			}
+		if (!this.validateMarbleColours(marbles))
+			throw new InvalidMarbleException("Wrong marble colour");
+		if(!this.validateMarbleSize(marbles))
+			throw new InvalidMarbleException("Wrong marble size");
+		if (marbles.size()==1)
+			boardManager.moveBy(marbles.get(0), 13, true);
+		else
+			gameManager.fieldMarble();
 	}
 }

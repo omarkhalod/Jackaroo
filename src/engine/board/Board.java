@@ -280,15 +280,4 @@ public class Board implements BoardManager{
 	public ArrayList<SafeZone> getSafeZones(){
 		return safeZones;
 	}
-	public Cell getCellofMarble(Marble marble){
-		for (Cell cell: track)
-			if (cell.getMarble() == marble) return cell;
-		
-		for (Cell cell: getSafeZone(marble.getColour()))
-				if (cell.getMarble() == marble) return cell;
-		
-		return null;
-		
-	}
-	
 }

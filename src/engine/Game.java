@@ -50,7 +50,6 @@ public class Game implements GameManager{
 	public ArrayList<Card> getFirePit(){
 		return firePit;
 	}
-//	-----------------------------------------------
 	public void selectCard(Card card) throws InvalidCardException{
 		players.get(currentPlayerIndex).selectCard(card);
 	}
@@ -69,43 +68,31 @@ public class Game implements GameManager{
 	}
 	
 	public boolean canPlayTurn(){
-		return players.get(turn).getHand().size() != 0;
-		// ^ should use turn walla current player index and what exactly to compare nigga
-		// what is the difference between turn and currentplayerindex nigga
+		if(players.get(currentPlayerIndex).getHand().size()!=4-turn)
+			return false;
+		return true;
 	}
 
 	public void playPlayerTurn() throws GameException{
-		if (!canPlayTurn()) throw new IllegalMovementException("Can't do nigga");
-		// ^ what kind of exception to throw nigga
-		
-		try {
-			players.get(turn).play();
-		}
-		catch (Exception e){
-			throw e;
-		}	
+		players.get(currentPlayerIndex).play();
 	}	
-	
 	public void endPlayerTurn(){
 		firePit.add(players.get(currentPlayerIndex).getSelectedCard());
 		players.get(currentPlayerIndex).getHand().remove(players.get(currentPlayerIndex).getSelectedCard());
-		
+		players.get(currentPlayerIndex).deselectAll();
 		currentPlayerIndex = (currentPlayerIndex + 1) % 4;
-		
-		if (currentPlayerIndex == 0) turn = (turn + 1) % 4;
-		
-		if (turn == 0){
+		if (currentPlayerIndex == 0) turn++;
+		if (turn == 4){
+			turn=0;
 			for (Player player:players){
-				player.getHand().addAll(Deck.drawCards());
+				if (Deck.getPoolSize()<4){
+					Deck.refillPool(firePit);
+					firePit.clear();
+				}
+				player.setHand(Deck.drawCards());
 			}
-		}
-		if (Deck.getPoolSize() < 4){
-			Deck.refillPool(firePit);
-			firePit.clear();
-			
-		}		
+		}	
 	}
-	
 	public Colour checkWin(){
 			for (SafeZone safezone:board.getSafeZones()){
 				boolean flag = true;
@@ -118,59 +105,43 @@ public class Game implements GameManager{
 	}
 	@Override
 	public void sendHome(Marble marble) {
-		players.get(currentPlayerIndex).regainMarble(marble);
-		
-		try {
-			board.destroyMarble(marble);
-		} catch (IllegalDestroyException e) {
-			e.printStackTrace();
+		for(Player p:players) {
+			if(p.getColour()==marble.getColour())
+				p.regainMarble(marble);
 		}
-		
 	}
 	@Override
 	public void fieldMarble() throws CannotFieldException,
 			IllegalDestroyException {
 		Marble marble = players.get(currentPlayerIndex).getOneMarble();
-		if(marble == null) throw new CannotFieldException("Can't do nigga YOU GOT NO MARBLESS ON THE FIELD");
-		//fielding the marble assuming its in the home zone into the base cell
+		if(marble == null) throw new CannotFieldException();
 		board.sendToBase(marble);
-		//Cant change the player marble array so i wrote this weh 5alas
-		//90% sure this will cause an error as destroymarble dose not check home zone
-		board.destroyMarble(marble);
-		
-		
+		players.get(currentPlayerIndex).removeMarble(marble);
 	}
 	@Override
 	public void discardCard(Colour colour) throws CannotDiscardException {
-		//get index of the player with colour colour
-		int idx = -1;
-		for(int i = 0; i < players.size(); i++) {
-			if(players.get(i).getColour().equals(colour)) {
-				idx = i;
-				break;
+		Player curPlayer=null;
+		for(Player player:players) {
+			if(player.getColour()==colour) {
+				curPlayer=player;
 			}
 		}
-		Player curPlayer = players.get(idx);
 		ArrayList<Card> hand = curPlayer.getHand();
-		
-		//remove random something
 		if (!hand.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(hand.size());
             hand.remove(randomIndex);
         } else {
-            throw new CannotDiscardException("You got no cards nigga");
+            throw new CannotDiscardException();
         }
-		//Update the hand in the players class
 		curPlayer.setHand(hand);
 		
 	}
 	@Override
 	public void discardCard() throws CannotDiscardException {
-		//select random player
 		Random random = new Random();
         int randomIndex = random.nextInt(players.size());
-        //Might have to check if the random players hand is not empty
+        while(randomIndex==currentPlayerIndex) randomIndex=random.nextInt(players.size());
         discardCard(players.get(randomIndex).getColour());
 	}
 	@Override

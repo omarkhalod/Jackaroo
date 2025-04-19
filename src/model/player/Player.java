@@ -52,7 +52,7 @@ public class Player {
 	}
 	
 	public void regainMarble(Marble marble){
-		marbles.add(marble); // ya nigga, can marble be anything, anywhere?
+		marbles.add(marble);
 	}
 	
 	public Marble getOneMarble(){
@@ -60,16 +60,26 @@ public class Player {
 			return marbles.get(0);
 		return null;
 	}
-	
+	public void removeMarble(Marble marble) {
+		for(int i=0;i<marbles.size();i++) {
+			if(marbles.get(i)==marble) {
+				marbles.remove(i);
+				break;
+			}
+		}
+	}
 	 public void selectCard(Card card) throws InvalidCardException{
 		 if (hand.contains(card))
 			 selectedCard = card;
-		 
-		 else throw new InvalidCardException("invalid card nigga");
+		 else
+			 throw new InvalidCardException();
 	 }
 	 
 	 public void selectMarble(Marble marble) throws InvalidMarbleException{
-		 if (selectedMarbles.size() == 2) throw new InvalidMarbleException("kteer awy greedy nigga");
+		 for(Marble marb:selectedMarbles) {
+			 if(marb==marble) return;
+		 }
+		 if (selectedMarbles.size() == 2) throw new InvalidMarbleException();
 		 selectedMarbles.add(marble);
 	 }
 	 
@@ -79,13 +89,8 @@ public class Player {
 	 }
 	 
 	 public void play() throws GameException{
-		 try{
-			 selectedCard.act(selectedMarbles);
-		 }
-		 
-		 catch(Exception e){
-			 throw e;
-		 }
+		 if(selectedCard==null) throw new InvalidCardException();
+		 selectedCard.act(selectedMarbles);
 	 }
 } 
 

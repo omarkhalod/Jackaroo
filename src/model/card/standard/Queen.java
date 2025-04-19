@@ -18,24 +18,16 @@ public class Queen extends Standard{
 	public boolean validateMarbleSize(ArrayList<Marble> marbles) {
 		return marbles.size() == 1 || marbles.size() ==0;
 	}
-	
-	public boolean validateMarbleColours(ArrayList<Marble> marbles){
-		if (marbles.size() == 0) return true;
-		if (marbles.size() == 1) return marbles.get(0).getColour() == gameManager.getActivePlayerColour();
-		return false;
-	}
-	
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 	InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles) || !this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble colour or size nigga");
-		try{
-			if (marbles.size() == 0) gameManager.discardCard();
-			else boardManager.moveBy(marbles.get(0), 12, false);
-		}
-		catch(Exception e){
-			throw new IllegalMovementException("Illegal movement exception nigga");
-			}
+		if (!this.validateMarbleColours(marbles))
+			throw new InvalidMarbleException("Wrong marble colour");
+		if(!this.validateMarbleSize(marbles))
+			throw new InvalidMarbleException("Wrong marble size");
+		if (marbles.size() == 0)
+			gameManager.discardCard();
+		else 
+			boardManager.moveBy(marbles.get(0), 12, false);
 	}
 	
 }

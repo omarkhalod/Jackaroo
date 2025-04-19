@@ -17,18 +17,10 @@ public class Saver extends Wild{
 	@Override
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 			InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles) || !this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble colour or size nigga");
-		try{
-			if (boardManager.getCellofMarble(marbles.get(0)).getCellType() != CellType.SAFE)
-				boardManager.sendToSafe(marbles.get(0));
-			else throw new InvalidMarbleException("Wrong marble type nigga");
-		}
-		catch(Exception e){
-			throw new IllegalMovementException("Illegal movement exception nigga");
-			}
+		if (!this.validateMarbleColours(marbles))
+			throw new InvalidMarbleException("Wrong marble colour");
+		if(!this.validateMarbleSize(marbles))
+			throw new InvalidMarbleException("Wrong marble size");
+		boardManager.sendToSafe(marbles.get(0));
 	}
-	
-
-	
 }

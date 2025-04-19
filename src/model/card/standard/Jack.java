@@ -22,7 +22,7 @@ public class Jack extends Standard{
 	public boolean validateMarbleColours(ArrayList<Marble> marbles){
 		if (marbles.size() == 1 && marbles.get(0).getColour() == gameManager.getActivePlayerColour()) return true;
 		if (marbles.size() == 2 &&
-			(marbles.get(0).getColour() == gameManager.getActivePlayerColour() ||
+			(marbles.get(0).getColour() == gameManager.getActivePlayerColour() ^
 			marbles.get(1).getColour() == gameManager.getActivePlayerColour()))
 			return true;
 		
@@ -31,15 +31,13 @@ public class Jack extends Standard{
 	
 	public void act(ArrayList<Marble> marbles) throws ActionException,
 	InvalidMarbleException {
-		if (!this.validateMarbleColours(marbles) || !this.validateMarbleSize(marbles))
-			throw new InvalidMarbleException("Wrong marble colour or size nigga");
-		try{
-			if (marbles.size() == 1) boardManager.moveBy(marbles.get(0), 11, false);
-			else
-				boardManager.swap(marbles.get(0), marbles.get(1));
-		}
-		catch(Exception e){
-			throw new IllegalMovementException("Illegal movement exception nigga");
-			}
+		if (!this.validateMarbleColours(marbles))
+			throw new InvalidMarbleException("Wrong marble colour");
+		if(!this.validateMarbleSize(marbles))
+			throw new InvalidMarbleException("Wrong marble size");
+		if (marbles.size() == 1)
+			boardManager.moveBy(marbles.get(0), 11, false);
+		else
+			boardManager.swap(marbles.get(0), marbles.get(1));
 	}
 }
