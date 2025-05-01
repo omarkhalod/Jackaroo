@@ -56,7 +56,7 @@ public class Player {
 	}
 	
 	public Marble getOneMarble(){
-		if (marbles.size() > 0)
+		if (!marbles.isEmpty())
 			return marbles.get(0);
 		return null;
 	}
@@ -82,10 +82,10 @@ public class Player {
 	 
 	 public void play() throws GameException{
 		 if(selectedCard==null) throw new InvalidCardException();
-		 if(!selectedCard.validateMarbleColours(selectedMarbles))
-			 throw new InvalidMarbleException("Wrong marble colour");
 		 if(!selectedCard.validateMarbleSize(selectedMarbles))
 			 throw new InvalidMarbleException("Wrong marble size");
+		 if(!selectedCard.validateMarbleColours(selectedMarbles))
+			 throw new InvalidMarbleException("Wrong marble colour");
 		 selectedCard.act(selectedMarbles);
 	 }
 } 

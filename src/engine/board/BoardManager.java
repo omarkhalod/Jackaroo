@@ -11,4 +11,4 @@ public interface BoardManager {
 	public void sendToBase(Marble marble) throws CannotFieldException, IllegalDestroyException;
 	public void sendToSafe(Marble marble) throws InvalidMarbleException;
 	public ArrayList<Marble> getActionableMarbles();
-}
+	}

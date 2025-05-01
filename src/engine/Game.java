@@ -91,7 +91,7 @@ public class Game implements GameManager{
 				}
 				player.setHand(Deck.drawCards());
 			}
-		}	
+		}
 	}
 	public Colour checkWin(){
 			for (SafeZone safezone:board.getSafeZones()){
