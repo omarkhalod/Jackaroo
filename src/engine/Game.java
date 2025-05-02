@@ -130,6 +130,7 @@ public class Game implements GameManager{
 		if (!hand.isEmpty()) {
             Random random = new Random();
             int randomIndex = random.nextInt(hand.size());
+            firePit.add(hand.get(randomIndex));
             hand.remove(randomIndex);
         } else {
             throw new CannotDiscardException();
