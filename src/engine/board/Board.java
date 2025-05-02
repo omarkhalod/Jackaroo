@@ -256,7 +256,7 @@ public class Board implements BoardManager{
 		Colour colour=gameManager.getActivePlayerColour();
 		for(Cell cell:track) {
 			Marble marble=cell.getMarble();
-			if(marble!=null&&marble.getColour()==colour) {
+			if(marble!=null) {
 				marbles.add(marble);
 			}
 		}
