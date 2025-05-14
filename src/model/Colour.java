@@ -1,5 +1,5 @@
 package model;
 
 public enum Colour {
-	RED, GREEN, BLUE, YELLOW
+    GREEN, RED, YELLOW, BLUE
 }
