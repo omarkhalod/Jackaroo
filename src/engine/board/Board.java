@@ -261,12 +261,11 @@ public class Board implements BoardManager{
 			}
 		}
 		ArrayList<Cell> safeZone=getSafeZone(colour);
-		for(Cell cell:safeZone) {
-			Marble marble=cell.getMarble();
-			if(marble!=null) {
-				marbles.add(marble);
-			}
-		}
+		for(int i=0;i<4;i++){
+            if(safeZone.get(i).getMarble()!=null){
+                marbles.add(safeZone.get(i).getMarble());
+            }
+        }
 		return marbles;
 	}
 	public int getSplitDistance() {
