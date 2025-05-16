@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,8 @@ import model.card.Card;
 import model.card.Deck;
 import model.card.standard.Ace;
 import model.player.Player;
+import view.CardView;
+import view.MarbleView;
 import engine.board.*;
 import exception.GameException;
 import exception.InvalidCardException;
@@ -48,7 +51,7 @@ public class Main extends Application {
         CardController.nameLabel.setText("");
         CardController.suitLabel.setText("");
         CardController.rankLabel.setText("");
-		ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardController.mp.get(temp));
+		ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardView.mp.get(temp));
 	    scaleDown.setToX(1.0);
 	    scaleDown.setToY(1.0);
 	    scaleDown.playFromStart();
@@ -62,36 +65,29 @@ public class Main extends Application {
 	    double height=bound.getHeight();
 	    Scene scene = new Scene(root, width, height);
 	    stage.setFullScreen(true);
-	    AnchorPane board = (AnchorPane) FXMLLoader.load(getClass().getResource("Board.fxml"));
+	    AnchorPane board = FXMLLoader.load(getClass().getResource("Board.fxml"));
 	    root.getChildren().add(board);
-
-	    // ——— prepare your controllers & game ———
 	    Game game = new Game("Osos");
 	    ArrayList<Card> playerHand = game.getPlayers().get(0).getHand();
-	    CardController.hash(playerHand);
+	    CardView.hash(playerHand);
 	    DropShadow glow = new DropShadow();
 
-	    // ——— center: board + infoBox overlay ———
 	    CardController.infoBox.getChildren().addAll(CardController.nameLabel,CardController.rankLabel,CardController.descLabel,CardController.suitLabel);
-	    // make infoBox float bottom-left
 	    CardController.infoBox.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 	    root.getChildren().add(CardController.infoBox);
 	    StackPane.setAlignment(CardController.infoBox,Pos.BOTTOM_LEFT);
 
-	    // ——— four hands ———
 	    HBox handPlayer = new HBox(20);
 	    HBox handCPU1   = new HBox(20);
 	    HBox handCPU2   = new HBox(20);
 	    HBox handCPU3   = new HBox(20);
 
-	    // rotate CPU hands once
 	    handCPU1.setRotate(90);
 	    handCPU2.setRotate(180);
 	    handCPU3.setRotate(270);
 
-	    // fill player hand
 	    for (Card c : playerHand) {
-	        ImageView iv = CardController.mp.get(c);
+	        ImageView iv = CardView.mp.get(c);
 	        iv.setFitWidth(100);
 	        iv.setFitHeight(139);
 	        iv.setEffect(glow);
@@ -104,7 +100,7 @@ public class Main extends Application {
 	    for (int i = 1; i < 4; i++) {
 	        for (Card c : game.getPlayers().get(i).getHand()) {
 	            ImageView iv = new ImageView("/view/resources/cards/back.png");
-	            CardController.mp.put(c, iv);
+	            CardView.mp.put(c, iv);
 	            iv.setFitWidth(100);
 	            iv.setFitHeight(139);
 	            iv.setEffect(glow);
@@ -114,7 +110,10 @@ public class Main extends Application {
 	    handCPU1.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 	    handCPU2.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
 	    handCPU3.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-	    // attach each hand to the BorderPane
+	    handPlayer.setPickOnBounds(false);
+	    handCPU1.setPickOnBounds(false);
+	    handCPU2.setPickOnBounds(false);
+	    handCPU3.setPickOnBounds(false);
 	    root.getChildren().add(handPlayer);
 	    StackPane.setAlignment(handPlayer, Pos.BOTTOM_CENTER);
 	    root.getChildren().add(handCPU1);
@@ -124,27 +123,22 @@ public class Main extends Application {
 	    root.getChildren().add(handCPU3);
 	    StackPane.setAlignment(handCPU3, Pos.CENTER_LEFT);
 
-	    // ——— bottom controls ———
 	    Button btnPlay     = new Button("Play");
 	    Button btnDeselect = new Button("Deselect All");
 	    btnPlay.setOnAction(e -> { try { play(game); } catch (GameException ex) { ex.printStackTrace(); } });
 	    btnDeselect.setOnAction(e -> deselect(game));
-
-	 // Create an HBox just for your two buttons
+	    btnPlay.setPickOnBounds(false);
+	    btnDeselect.setPickOnBounds(false);
 	    HBox buttonRow = new HBox(20, btnPlay, btnDeselect);
 	    buttonRow.setAlignment(Pos.CENTER);
-
-	    // Now create a VBox that stacks the buttonRow on top of the handPlayer row
+	    buttonRow.setPickOnBounds(false);
 	    VBox bottomBar = new VBox(10, buttonRow, handPlayer);
 	    bottomBar.setAlignment(Pos.BOTTOM_CENTER);
 	    bottomBar.setPadding(new Insets(10));
 	    VBox.setMargin(handPlayer, new Insets(20, 0, 0, 0)); 
-
-	    // Add it to your root (StackPane in your case)
+	    bottomBar.setPickOnBounds(false);
 	    root.getChildren().add(bottomBar);
 	    StackPane.setAlignment(bottomBar, Pos.BOTTOM_CENTER);
-
-	    // ——— style & infoBox setup ———
 	    CardController.descLabel .setWrapText(true);
 	    CardController.nameLabel .setWrapText(true);
 	    CardController.rankLabel .setWrapText(true);
@@ -163,6 +157,7 @@ public class Main extends Application {
 	    	    "-fx-border-width: 1;" +
 	    	    "-fx-border-radius: 10;"
 	    	);
+	    MarbleView.setMarble(game, scene);
 	    stage.setScene(scene);
 	    stage.setTitle("Resizable Card-Marble Game");
 	    stage.show();
