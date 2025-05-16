@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Sphere?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1165.0" prefWidth="2297.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <StackPane layoutX="408.8" layoutY="166.4" prefHeight="871.0" prefWidth="1376.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="409.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="166.0">
+         <children>
+            <Group scaleX="1.1" scaleY="1.1" translateX="50.0" translateY="-20.0" StackPane.alignment="CENTER">
+               <children>
+                  <VBox layoutX="228.0" prefHeight="200.0" prefWidth="100.0" spacing="292.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Group layoutX="50.0" layoutY="25.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Circle fill="DODGERBLUE" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Circle fill="DODGERBLUE" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <Circle fill="DODGERBLUE" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                 </children>
+                              </Group>
+                           </children>
+                        </Group>
+                        <Group fx:id="group1" rotate="180.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <HBox layoutY="205.0" prefHeight="118.0" prefWidth="575.0" spacing="338.0">
+                     <children>
+                        <Group rotate="-90.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                        <Group rotate="90.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                     </children>
+                  </HBox>
+                  <Group layoutX="352.0" layoutY="325.0" rotate="180.0">
+                     <children>
+                        <Group layoutX="9.0" layoutY="11.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                        <Group layoutX="71.0" layoutY="-31.0" rotate="90.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="101.0" layoutY="99.0">
+                     <children>
+                        <Group layoutX="9.0" layoutY="11.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                        <Group layoutX="71.0" layoutY="-31.0" rotate="90.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="101.0" layoutY="325.0">
+                     <children>
+                        <Group layoutX="10.0" layoutY="10.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                        <Group layoutX="72.0" layoutY="52.0" rotate="90.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="351.0" layoutY="100.0" rotate="180.0">
+                     <children>
+                        <Group layoutX="10.0" layoutY="10.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                        <Group layoutX="72.0" layoutY="52.0" rotate="90.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="395.0" layoutY="458.0">
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Group>
+                           <children>
+                              <Sphere fx:id="p0m0" layoutX="18.0" radius="8.0" />
+                              <Sphere fx:id="p0m1" layoutX="36.0" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p0m2" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p0m3" layoutX="18.0" layoutY="36.0" radius="8.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="508.0" layoutY="133.0">
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Group layoutY="-1.0">
+                           <children>
+                              <Sphere fx:id="p1m0" layoutX="18.0" radius="8.0" />
+                              <Sphere fx:id="p1m1" layoutX="36.0" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p1m2" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p1m3" layoutX="18.0" layoutY="36.0" radius="8.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="145.0" layoutY="35.0">
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Group layoutY="-1.0">
+                           <children>
+                              <Sphere fx:id="p2m0" layoutX="18.0" radius="8.0" />
+                              <Sphere fx:id="p2m1" layoutX="36.0" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p2m2" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p2m3" layoutX="18.0" layoutY="36.0" radius="8.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group layoutX="32.0" layoutY="359.0">
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Group>
+                           <children>
+                              <Sphere fx:id="p3m0" layoutX="18.0" radius="8.0" />
+                              <Sphere fx:id="p3m1" layoutX="36.0" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p3m2" layoutY="18.0" radius="8.0" />
+                              <Sphere fx:id="p3m3" layoutX="18.0" layoutY="36.0" radius="8.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </Group>
+                  <Group translateX="237.0" translateY="190.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="150.0" strokeType="INSIDE" strokeWidth="5.0" width="100.0">
+                           <stroke>
+                              <LinearGradient endX="0.8446601941747574" endY="0.6699029126213593" startX="0.674757281553398" startY="0.47572815533980584">
+                                 <stops>
+                                    <Stop color="#ff6a00e5" />
+                                    <Stop color="#ff8000" offset="0.3966325660699062" />
+                                    <Stop color="#ffca00" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </Rectangle>
+                        <Label layoutX="27.0" layoutY="65.0" text="Fire Pit" />
+                     </children>
+                  </Group>
+               </children>
+            </Group>
+            <StackPane alignment="TOP_RIGHT" prefHeight="135.0" prefWidth="140.0">
+               <children>
+                  <Circle fx:id="humanCircle" fill="RED" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../human.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane alignment="TOP_LEFT" prefHeight="135.0" prefWidth="140.0">
+               <children>
+                  <Circle fx:id="cpu3Circle" fill="RED" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../cpuHAHA.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_RIGHT" prefHeight="135.0" prefWidth="140.0">
+               <children>
+                  <Circle fx:id="cpu2Circle" fill="RED" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../cpuSmiley.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane alignment="BOTTOM_LEFT" prefHeight="135.0" prefWidth="140.0">
+               <children>
+                  <Circle fx:id="cpu1Circle" fill="RED" radius="70.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../cpu.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1085.0">
+               <children>
+                  <Label text="Player's name" StackPane.alignment="BOTTOM_RIGHT">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="CPU 1" StackPane.alignment="TOP_RIGHT">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="CPU 2" StackPane.alignment="TOP_LEFT">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label text="CPU 3" StackPane.alignment="BOTTOM_LEFT">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
