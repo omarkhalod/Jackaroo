@@ -17,8 +17,6 @@ public class MarbleController {
 			BoardController.overlay.getChildren().add(marble);
 			marble.setLayoutX(BoardController.trackPositions.get(cnt).getX());
 			marble.setLayoutY(BoardController.trackPositions.get(cnt).getY());
-			System.out.println(BoardController.trackPositions.get(cnt).getX());
-			System.out.println(BoardController.trackPositions.get(cnt).getY());
 			cnt++;
 		}
 	}
