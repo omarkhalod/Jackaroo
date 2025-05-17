@@ -30,6 +30,7 @@ import javafx.util.Duration;
 import model.card.Card;
 import model.card.Deck;
 import model.card.standard.Ace;
+import model.player.Marble;
 import model.player.Player;
 import view.CardView;
 import view.MarbleView;
@@ -40,10 +41,9 @@ import engine.*;
 
 public class Main extends Application {
 	public static void play(Game game) throws GameException {
-		game.playPlayerTurn();
+		MarbleController.move(game);
 	}
 	public static void deselect(Game game) {
-		if(CardController.selected==null) return;
 		Card temp=CardController.selected;
 		CardController.selected=null;
 		game.deselectAll();
@@ -51,10 +51,22 @@ public class Main extends Application {
         CardController.nameLabel.setText("");
         CardController.suitLabel.setText("");
         CardController.rankLabel.setText("");
-		ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardView.mp.get(temp));
-	    scaleDown.setToX(1.0);
-	    scaleDown.setToY(1.0);
-	    scaleDown.playFromStart();
+        if(temp!=null) {
+        	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardView.mp.get(temp));
+	    	scaleDown.setToX(1.0);
+	    	scaleDown.setToY(1.0);
+	    	scaleDown.playFromStart();
+        }
+	    ArrayList<ImageView> selected=MarbleView.selectedMarbles;
+	    DropShadow shadow=new DropShadow();
+	    for(ImageView marble:selected) {
+	    	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), marble);
+	    	scaleDown.setToX(1.0);
+	    	scaleDown.setToY(1.0);
+	    	scaleDown.playFromStart();
+	    	marble.setEffect(shadow);
+	    }
+	    MarbleView.selectedMarbles.clear();
 	}
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -158,6 +170,7 @@ public class Main extends Application {
 	    	    "-fx-border-radius: 10;"
 	    	);
 	    MarbleView.setMarble(game, scene);
+	    BoardController.setUp(root, game);
 	    stage.setScene(scene);
 	    stage.setTitle("Resizable Card-Marble Game");
 	    stage.show();

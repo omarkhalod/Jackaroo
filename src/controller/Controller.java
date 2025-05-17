@@ -21,6 +21,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Sphere;
 import model.player.Marble;
 import model.player.Player;
+import view.MarbleView;
 
 public class Controller implements Initializable{
 	private ArrayList<ArrayList<ImageView>> playerMarbles = new ArrayList<>();	
@@ -49,27 +50,16 @@ public class Controller implements Initializable{
 	            marble.setPickOnBounds(false);
 	            marble.setEffect(shadow);
 	            marble.setOnMouseEntered(e -> marble.setEffect(new Glow(0.8)));
-	            marble.setOnMouseExited(e -> marble.setEffect(shadow));
+	            marble.setOnMouseExited(e -> {
+	            	if(!MarbleView.selectedMarbles.contains(marble))
+	            		marble.setEffect(shadow);
+	            });
 	        }
 	    }
 		humanCircle.setFill(Color.RED);
 		cpu1Circle.setFill(Color.GREEN);
 		cpu2Circle.setFill(Color.BLUE);
 		cpu3Circle.setFill(Color.YELLOW);
-	}
-	public void setMarbles(Game game) {
-		int i=0;
-		for(Player player:game.getPlayers()) {
-			int j=0;
-			String color=""+player.getColour();
-			for(Marble marble:player.getMarbles()) {
-				String id="/view/resources/marbles/"+color+".png";
-				ImageView curr= new ImageView(id);
-				playerMarbles.get(i).set(j,curr);
-				j++;
-			}
-			i++;
-		}
 	}
 	
 }

@@ -86,21 +86,81 @@
                            <children>
                               <Group>
                                  <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="16.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="66.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                     <Group layoutX="50.0" layoutY="25.0">
                                        <children>
                                           <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
@@ -113,25 +173,101 @@
                               </Group>
                               <Group fx:id="group1" rotate="180.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="16.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="66.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="16.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="41.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="66.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                            </children>
@@ -140,48 +276,200 @@
                            <children>
                               <Group rotate="-90.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="16.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="66.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="16.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="41.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="66.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                               <Group rotate="90.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="25.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="75.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="20.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="40.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="60.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="80.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="25.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="50.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="75.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutX="50.0" layoutY="100.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="16.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="66.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="91.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="11.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="31.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="51.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="71.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="16.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="41.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="66.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="41.0" layoutY="91.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                            </children>
@@ -190,20 +478,60 @@
                            <children>
                               <Group layoutX="9.0" layoutY="11.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                               <Group layoutX="71.0" layoutY="-31.0" rotate="90.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                            </children>
@@ -212,20 +540,60 @@
                            <children>
                               <Group layoutX="9.0" layoutY="11.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                               <Group layoutX="71.0" layoutY="-31.0" rotate="90.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                            </children>
@@ -234,20 +602,60 @@
                            <children>
                               <Group layoutX="10.0" layoutY="10.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                               <Group layoutX="72.0" layoutY="52.0" rotate="90.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                            </children>
@@ -256,20 +664,60 @@
                            <children>
                               <Group layoutX="10.0" layoutY="10.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                               <Group layoutX="72.0" layoutY="52.0" rotate="90.0">
                                  <children>
-                                    <Circle fill="DODGERBLUE" layoutY="83.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="62.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="42.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" layoutY="21.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <StackPane layoutX="-9.0" layoutY="74.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="53.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="33.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="12.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
+                                    <StackPane layoutX="-9.0" layoutY="-9.0">
+                                       <children>
+                                          <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </Group>
                            </children>
@@ -292,50 +740,114 @@
                         </Group>
                         <Group layoutX="145.0" layoutY="35.0">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <ImageView fx:id="p2m3" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p2m0" fitHeight="31.0" fitWidth="29.0" layoutX="-15.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p2m1" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p2m2" fitHeight="31.0" fitWidth="29.0" layoutX="22.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                              <StackPane layoutX="9.0" layoutY="-9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p2m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="27.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p2m2" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="9.0" layoutY="27.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p2m1" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="-9.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p2m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
                            </children>
                         </Group>
                         <Group layoutX="32.0" layoutY="359.0">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <ImageView fx:id="p3m3" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p3m0" fitHeight="31.0" fitWidth="29.0" layoutX="-15.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p3m1" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p3m2" fitHeight="31.0" fitWidth="29.0" layoutX="22.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                              <StackPane layoutX="9.0" layoutY="-9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="27.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m2" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="9.0" layoutY="27.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m1" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="-9.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
                            </children>
                         </Group>
                         <Group layoutX="508.0" layoutY="132.0">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <ImageView fx:id="p1m0" fitHeight="31.0" fitWidth="29.0" layoutX="-14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p1m3" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p1m2" fitHeight="31.0" fitWidth="29.0" layoutX="22.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p1m1" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
+                              <StackPane layoutX="9.0" layoutY="-9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p1m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="27.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p1m2" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="9.0" layoutY="27.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p1m1" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="-9.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p1m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
                            </children>
                         </Group>
                         <Group layoutX="395.0" layoutY="458.0">
                            <children>
-                              <Circle fill="DODGERBLUE" layoutX="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="36.0" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutX="18.0" layoutY="36.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Circle fill="DODGERBLUE" layoutY="18.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                              <ImageView fx:id="p0m0" fitHeight="31.0" fitWidth="29.0" layoutX="-14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p0m3" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p0m1" fitHeight="31.0" fitWidth="29.0" layoutX="4.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fx:id="p0m2" fitHeight="31.0" fitWidth="29.0" layoutX="22.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                              <StackPane layoutX="9.0" layoutY="-9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p0m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="27.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p0m2" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="9.0" layoutY="27.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p0m1" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="-9.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p0m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
                            </children>
                         </Group>
                      </children>

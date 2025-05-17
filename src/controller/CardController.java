@@ -71,11 +71,6 @@ public class CardController {
 			} catch (InvalidCardException e1) {
 				e1.printStackTrace();
 			}
-			}else if(e.getButton()== MouseButton.SECONDARY) {
-				if(card!=selected) return;
-				game.deselectAll();
-				selected=null;
-				scaleDown.playFromStart();
 			}
 		});
 	}
