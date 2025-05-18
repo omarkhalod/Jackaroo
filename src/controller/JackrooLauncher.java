@@ -39,6 +39,11 @@ public class JackrooLauncher extends Application{
 		Parent landingRoot = createLandingRoot();
 		
         landingScene = new Scene(landingRoot, BG_WIDTH, BG_HEIGHT);
+        
+        //link style sheet
+        landingScene.getStylesheets().add(
+        	    getClass().getResource("app.css").toExternalForm()
+        	);
 
         //Make video fill on resize
         landingScene.widthProperty().addListener((obs, oldW, newW) ->
