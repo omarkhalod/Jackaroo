@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
@@ -46,14 +48,64 @@ public class Main {
     private static HBox handPlayer, handCPU1, handCPU2, handCPU3;	
 	private static Controller controller;
 	public static JackrooLauncher launcher;
+	
+	
+	public static boolean hasAnyValidMove(Game game) {
+	    Player player = game.getCurrentPlayer();
+	    ArrayList<Marble> marbles = player.getMarbles();
+	    ArrayList<Card> cards = player.getHand();
+
+	    for (Card card : cards) {
+	        // Try all single-marble moves
+	        for (Marble m : marbles) {
+	            ArrayList<Marble> testMove = new ArrayList<>();
+	            testMove.add(m);
+	            try {
+	                card.act(testMove);
+	                return true;
+	            } catch (Exception e) {
+	                // Ignore invalid move
+	            }
+	        }
+
+	        // Try all two-marble combos (if allowed by card type)
+	        for (int i = 0; i < marbles.size(); i++) {
+	            for (int j = i + 1; j < marbles.size(); j++) {
+	                ArrayList<Marble> testMove = new ArrayList<>();
+	                testMove.add(marbles.get(i));
+	                testMove.add(marbles.get(j));
+	                try {
+	                    card.act(testMove);
+	                    return true;
+	                } catch (Exception e) {
+	                    // Ignore invalid move
+	                }
+	            }
+	        }
+	    }
+
+	    return false; // No card worked with any marble combo
+	}
+
+	
 	public static void play(Game game,StackPane root) throws GameException {
+	
+		if(!hasAnyValidMove(game)){
+			Card discard = game.getCurrentPlayer().getHand().remove(0);
+			refreshUI();
+			endTurn();
+			playCPUTurnsSequentially();
+			return;
+		}
 		if(CardController.selected.getName().equals("Seven")&&MarbleView.selectedMarbles.size()==2) {
 			int split=launcher.seven();
 			game.editSplitDistance(split);
 			game.playPlayerTurn();
 			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(0),BoardController.sevenFirstPath);
 			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(1),BoardController.sevenSecondPath);
-			deselect(game);
+//			deselect(game);
+			endTurn();
+			playCPUTurnsSequentially();
 			return;
 		}
 		game.playPlayerTurn();
@@ -61,7 +113,9 @@ public class Main {
 			if(CardController.selected.getName().equals("Queen")) {
 				CardController.discardCard(game,CardController.selected,root);
 				CardController.discardCard(game,CardController.discarded,root);
-				deselect(game);
+//				deselect(game);
+				endTurn();
+				playCPUTurnsSequentially();
 				return;
 			}else
 				MarbleController.fieldMarble(game);
@@ -77,12 +131,15 @@ public class Main {
 			MarbleView.selectedMarbles.get(1).setLayoutY(y);
 		}
 		CardController.discardCard(game,CardController.selected,root);
-		deselect(game);
+//		deselect(game);
+		endTurn();
+		playCPUTurnsSequentially();
 	}
 	private static void playCPUTurnsSequentially() {
 	    if (game.getCurrentPlayer() != game.getPlayers().get(0)) {
 	    	if(!game.canPlayTurn()){
 	    		game.endPlayerTurn();
+	    		refreshUI();
 	    		playCPUTurnsSequentially();
 	    	}
 	    	else{
@@ -90,8 +147,22 @@ public class Main {
 		    	PauseTransition pause = new PauseTransition(Duration.seconds(1));
 		        pause.setOnFinished(event -> {
 		            try {
+//		            	Map<Marble, Cell> beforeMap = MarbleController.getMarblePositions(game);
+
 		                game.playPlayerTurn(); // CPU makes move
-		                System.out.println("Card played: " + game.getCurrentPlayer().getSelectedCard());
+		                Player current = game.getCurrentPlayer();
+		                Card selectedCard = current.getSelectedCard();
+		                ArrayList<Marble> selectedMarbles = current.getMarbles();
+		                System.out.println(selectedMarbles);
+		                
+//		                double x=MarbleView.selectedMarbles.get(0).getLayoutX();
+//		    			double y=MarbleView.selectedMarbles.get(0).getLayoutY();
+//		    			MarbleView.selectedMarbles.get(0).setLayoutX(MarbleView.selectedMarbles.get(1).getLayoutX());
+//		    			MarbleView.selectedMarbles.get(0).setLayoutY(MarbleView.selectedMarbles.get(1).getLayoutY());
+//		    			MarbleView.selectedMarbles.get(1).setLayoutX(x);
+//		    			MarbleView.selectedMarbles.get(1).setLayoutY(y);
+		                
+//		                System.out.println("Card played: " + game.getCurrentPlayer().getSelectedCard());
 //		                game.endPlayerTurn();
 		                endTurn();
 
@@ -105,7 +176,7 @@ public class Main {
 		        });
 		        pause.play();
 		    }
-	    	}
+	    }
 	    	
 	}
 	private static void refreshUI() {

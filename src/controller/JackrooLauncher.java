@@ -23,7 +23,7 @@ public class JackrooLauncher extends Application{
 	private Scene landingScene;
 	private Scene gameScene;
 	
-    private static final String TITLE_TEXT = "Jackroo";
+    private static final String TITLE_TEXT = "Jackaroo";
     private static final Duration CHAR_DELAY = Duration.millis(150);
     private static final Duration STARTING_DELAY = Duration.seconds(1);
     private static final int BG_WIDTH = 1800;
