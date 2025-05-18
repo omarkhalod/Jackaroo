@@ -2,6 +2,8 @@ package engine.board;
 
 import java.util.ArrayList;
 
+import controller.BoardController;
+import controller.MarbleController;
 import engine.GameManager;
 import exception.CannotFieldException;
 import exception.IllegalDestroyException;
@@ -83,6 +85,14 @@ public class Board implements BoardManager {
 
     private int getBasePosition(Colour colour) {
         for(int i = 0; i < safeZones.size(); i++) {
+            if(safeZones.get(i).getColour() == colour)
+                return i * 25;
+        }
+        
+        return -1;
+    }
+    public int publicBasePosition(Colour colour) {
+    	for(int i = 0; i < safeZones.size(); i++) {
             if(safeZones.get(i).getColour() == colour)
                 return i * 25;
         }
@@ -279,9 +289,8 @@ public class Board implements BoardManager {
     @Override
     public void moveBy(Marble marble, int steps, boolean destroy) throws IllegalMovementException, IllegalDestroyException{
     	ArrayList<Cell> fullPath = validateSteps(marble, steps);
-    	
         validatePath(marble, fullPath, destroy);
-        
+        BoardController.fullPath=fullPath;
         move(marble, fullPath, destroy);
     }
 
@@ -306,6 +315,7 @@ public class Board implements BoardManager {
 
         this.track.get(positionOnTrack).setMarble(null);
         this.gameManager.sendHome(marble);
+        MarbleController.destroyed.add(marble);
     }
 
     @Override

@@ -2,6 +2,7 @@ package model.card.standard;
 
 import java.util.ArrayList;
 
+import controller.BoardController;
 import engine.GameManager;
 import engine.board.BoardManager;
 import exception.ActionException;
@@ -23,7 +24,9 @@ public class Seven extends Standard {
     public void act(ArrayList<Marble> marbles) throws ActionException, InvalidMarbleException {
         if(marbles.size() == 2) {
             boardManager.moveBy(marbles.get(0), boardManager.getSplitDistance(), false);
+            BoardController.sevenFirstPath=BoardController.fullPath;
             boardManager.moveBy(marbles.get(1), 7-boardManager.getSplitDistance(), false);
+            BoardController.sevenSecondPath=BoardController.fullPath;
         }
         
         else

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import controller.CardController;
 import engine.board.Board;
 import engine.board.SafeZone;
 import exception.CannotDiscardException;
@@ -155,6 +156,7 @@ public class Game implements GameManager {
                 if(handSize == 0)
                     throw new CannotDiscardException("Player has no cards to discard.");
                 int randIndex = (int) (Math.random() * handSize);
+                CardController.discarded=player.getHand().get(randIndex);
                 this.firePit.add(player.getHand().remove(randIndex));
             }
         }
@@ -178,5 +180,7 @@ public class Game implements GameManager {
     public Colour getNextPlayerColour() {
         return players.get((currentPlayerIndex + 1) % 4).getColour();
     }
-    
+    public Player getCurrentPlayer() {
+    	return players.get(currentPlayerIndex);
+    }
 }

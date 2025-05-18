@@ -10,6 +10,7 @@ import engine.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -29,9 +30,8 @@ public class Controller implements Initializable{
 	@FXML private ImageView p1m0, p1m1, p1m2, p1m3;
 	@FXML private ImageView p2m0, p2m1, p2m2, p2m3;
 	@FXML private ImageView p3m0, p3m1, p3m2, p3m3;
-	
 	@FXML private Circle humanCircle, cpu1Circle, cpu2Circle, cpu3Circle;
-	
+	@FXML private Label name;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -57,9 +57,34 @@ public class Controller implements Initializable{
 	        }
 	    }
 		humanCircle.setFill(Color.RED);
+		humanCircle.setStrokeWidth(5);
+		humanCircle.setStroke(Color.GOLD);
+		cpu1Circle.setFill(Color.GREEN);
+		cpu1Circle.setStrokeWidth(5);
+		cpu2Circle.setFill(Color.BLUE);
+		cpu2Circle.setStrokeWidth(5);
+		cpu3Circle.setFill(Color.YELLOW);
+		cpu3Circle.setStrokeWidth(5);
+	}
+	 public void highlightCurrentPlayer(int playerIndex) {
+		humanCircle.setFill(Color.RED);
 		cpu1Circle.setFill(Color.GREEN);
 		cpu2Circle.setFill(Color.BLUE);
-		cpu3Circle.setFill(Color.YELLOW);
-	}
-	
+		cpu3Circle.setFill(Color.YELLOW);   
+		humanCircle.setStroke(Color.BLACK);
+		cpu1Circle.setStroke(Color.BLACK);
+		cpu2Circle.setStroke(Color.BLACK);
+		cpu3Circle.setStroke(Color.BLACK);
+       
+		// Highlight current player
+		switch(playerIndex) {
+			case 0: humanCircle.setStroke(Color.GOLD); break;
+			case 1: cpu1Circle.setStroke(Color.GOLD); break;
+			case 2: cpu2Circle.setStroke(Color.GOLD); break;
+			case 3: cpu3Circle.setStroke(Color.GOLD); break;
+		}
+	 }
+	 public void setName(String name) {
+		 this.name.setText(name);
+	 }
 }

@@ -2,20 +2,34 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.UnaryOperator;
 
 import engine.Game;
 import exception.InvalidCardException;
 import javafx.animation.ScaleTransition;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.converter.IntegerStringConverter;
 import model.card.Card;
 import model.card.standard.Standard;
 import model.card.standard.Suit;
 import view.CardView;
+import view.MarbleView;
 
 public class CardController {
     public static final Label descLabel = new Label();
@@ -24,6 +38,8 @@ public class CardController {
     public static final Label rankLabel = new Label();
     public static final VBox infoBox = new VBox(5);
     public static Card selected=null;
+    public static int splitDistance=0;
+    public static Card discarded=null;
 	public static void hoverOnCard(Card card,Game game) {
 		ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), CardView.mp.get(card));
 	    scaleUp.setToX(1.1);
@@ -73,5 +89,22 @@ public class CardController {
 			}
 			}
 		});
+	}
+	public static void discardCard(Game game,Card card,StackPane root) {
+		ImageView cardView=CardView.mp.get(card);
+		Image img;
+		if(card instanceof Standard) {
+			Standard cardn=(Standard) card;
+			img=new Image(MarbleView.class.getResourceAsStream("/view/resources/cards/"+CardView.id(cardn.getRank(),cardn.getSuit())+".png"));
+		}else {
+			img=new Image(MarbleView.class.getResourceAsStream("/view/resources/cards/joker.png"));
+		}
+		cardView.setImage(img);
+		((HBox)cardView.getParent()).getChildren().remove(cardView);
+		root.getChildren().add(cardView);
+		StackPane.setAlignment(cardView,Pos.CENTER);
+		cardView.setOnMouseClicked(null);
+		cardView.setOnMouseEntered(null);
+		cardView.setOnMouseExited(null);
 	}
 }

@@ -60,7 +60,7 @@
             </StackPane>
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1085.0" StackPane.alignment="CENTER">
                <children>
-                  <Label text="Player's name" StackPane.alignment="BOTTOM_RIGHT">
+                  <Label fx:id="name" text="Player's name" StackPane.alignment="BOTTOM_RIGHT">
                      <font>
                         <Font size="27.0" />
                      </font>

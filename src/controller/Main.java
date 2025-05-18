@@ -2,8 +2,10 @@ package controller;
 
 import java.util.ArrayList;
 
+import javafx.animation.PauseTransition;
 import javafx.animation.ScaleTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,10 +41,130 @@ import exception.GameException;
 import exception.InvalidCardException;
 import engine.*;
 
-public class Main extends Application {
-	public static void play(Game game) throws GameException {
-		MarbleController.move(game);
+public class Main {
+    private static Game game;
+    private static HBox handPlayer, handCPU1, handCPU2, handCPU3;	
+	private static Controller controller;
+	public static JackrooLauncher launcher;
+	public static void play(Game game,StackPane root) throws GameException {
+		if(CardController.selected.getName().equals("Seven")&&MarbleView.selectedMarbles.size()==2) {
+			int split=launcher.seven();
+			game.editSplitDistance(split);
+			game.playPlayerTurn();
+			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(0),BoardController.sevenFirstPath);
+			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(1),BoardController.sevenSecondPath);
+			deselect(game);
+			return;
+		}
+		game.playPlayerTurn();
+		if(MarbleView.selectedMarbles.isEmpty()) {
+			if(CardController.selected.getName().equals("Queen")) {
+				CardController.discardCard(game,CardController.selected,root);
+				CardController.discardCard(game,CardController.discarded,root);
+				deselect(game);
+				return;
+			}else
+				MarbleController.fieldMarble(game);
+			
+		}else if(MarbleView.selectedMarbles.size()==1) {
+			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(0),BoardController.fullPath);
+		}else {	
+			double x=MarbleView.selectedMarbles.get(0).getLayoutX();
+			double y=MarbleView.selectedMarbles.get(0).getLayoutY();
+			MarbleView.selectedMarbles.get(0).setLayoutX(MarbleView.selectedMarbles.get(1).getLayoutX());
+			MarbleView.selectedMarbles.get(0).setLayoutY(MarbleView.selectedMarbles.get(1).getLayoutY());
+			MarbleView.selectedMarbles.get(1).setLayoutX(x);
+			MarbleView.selectedMarbles.get(1).setLayoutY(y);
+		}
+		CardController.discardCard(game,CardController.selected,root);
+		deselect(game);
 	}
+	private static void playCPUTurnsSequentially() {
+	    if (game.getCurrentPlayer() != game.getPlayers().get(0)) {
+	    	if(!game.canPlayTurn()){
+	    		game.endPlayerTurn();
+	    		playCPUTurnsSequentially();
+	    	}
+	    	else{
+	    		System.out.println("Playing turn " + game.getCurrentPlayer().getName());
+		    	PauseTransition pause = new PauseTransition(Duration.seconds(1));
+		        pause.setOnFinished(event -> {
+		            try {
+		                game.playPlayerTurn(); // CPU makes move
+		                System.out.println("Card played: " + game.getCurrentPlayer().getSelectedCard());
+//		                game.endPlayerTurn();
+		                endTurn();
+
+		            } catch (GameException e) {
+		                e.printStackTrace();
+		            }
+		            
+		            // Continue with the next CPU if not back to human
+		            refreshUI();
+		            playCPUTurnsSequentially();
+		        });
+		        pause.play();
+		    }
+	    	}
+	    	
+	}
+	private static void refreshUI() {
+	    updateHands();
+	    deselect(game);
+
+	    int current = game.getPlayers().indexOf(game.getCurrentPlayer());
+	    if (controller != null) {
+	        Platform.runLater(() -> controller.highlightCurrentPlayer(current));
+	    }
+	}
+    public static void endTurn() {
+        game.endPlayerTurn();
+        updateHands();
+        deselect(game);
+        
+        // Highlight current player
+        int currentPlayerIndex = game.getPlayers().indexOf(game.getCurrentPlayer());
+        if (controller != null) {
+            Platform.runLater(() -> {
+                controller.highlightCurrentPlayer(currentPlayerIndex);
+            });
+        }
+    }
+	private static void updateHands() {
+        // Clear current hands
+        handPlayer.getChildren().clear();
+        handCPU1.getChildren().clear();
+        handCPU2.getChildren().clear();
+        handCPU3.getChildren().clear();
+        
+        // Update player hand (human)
+		
+//		handPlayer.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        for (Card c : game.getPlayers().get(0).getHand()) {
+        	
+            ImageView iv = CardView.mp.get(c);
+            iv.setFitWidth(100);
+            iv.setFitHeight(139);
+//            iv.setEffect(glow);
+            CardController.hoverOnCard(c, game);
+            CardController.leaveCard(c, game);
+            CardController.clickCard(c, game);
+            handPlayer.getChildren().add(iv);
+        }
+        
+        // Update CPU hands (showing backs)
+        for (int i = 1; i < 4; i++) {
+            for (Card c : game.getPlayers().get(i).getHand()) {
+                ImageView iv = new ImageView("/view/resources/cards/back.png");
+                CardView.mp.put(c, iv);
+                iv.setFitWidth(100);
+                iv.setFitHeight(139);
+                (i==1 ? handCPU1 : i==2 ? handCPU2 : handCPU3).getChildren().add(iv);
+            }
+        }
+        
+  
+    }
 	public static void deselect(Game game) {
 		Card temp=CardController.selected;
 		CardController.selected=null;
@@ -68,18 +190,20 @@ public class Main extends Application {
 	    }
 	    MarbleView.selectedMarbles.clear();
 	}
-	@Override
-	public void start(Stage stage) throws Exception {
+	
+	public Scene start(String playerName) throws Exception {
 	    StackPane root = new StackPane();
 	    root.setPadding(new Insets(20));
 	    Rectangle2D bound=Screen.getPrimary().getVisualBounds();
 	    double width=bound.getWidth();
 	    double height=bound.getHeight();
 	    Scene scene = new Scene(root, width, height);
-	    stage.setFullScreen(true);
-	    AnchorPane board = FXMLLoader.load(getClass().getResource("Board.fxml"));
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("Board.fxml"));
+	    AnchorPane board = loader.load();
+	    controller = loader.getController();
 	    root.getChildren().add(board);
-	    Game game = new Game("Osos");
+	    controller.setName(playerName);
+	    game = new Game(playerName);
 	    ArrayList<Card> playerHand = game.getPlayers().get(0).getHand();
 	    CardView.hash(playerHand);
 	    DropShadow glow = new DropShadow();
@@ -89,10 +213,10 @@ public class Main extends Application {
 	    root.getChildren().add(CardController.infoBox);
 	    StackPane.setAlignment(CardController.infoBox,Pos.BOTTOM_LEFT);
 
-	    HBox handPlayer = new HBox(20);
-	    HBox handCPU1   = new HBox(20);
-	    HBox handCPU2   = new HBox(20);
-	    HBox handCPU3   = new HBox(20);
+	    handPlayer = new HBox(20);
+	    handCPU1   = new HBox(20);
+	    handCPU2   = new HBox(20);
+	    handCPU3   = new HBox(20);
 
 	    handCPU1.setRotate(90);
 	    handCPU2.setRotate(180);
@@ -137,7 +261,7 @@ public class Main extends Application {
 
 	    Button btnPlay     = new Button("Play");
 	    Button btnDeselect = new Button("Deselect All");
-	    btnPlay.setOnAction(e -> { try { play(game); } catch (GameException ex) { ex.printStackTrace(); } });
+	    btnPlay.setOnAction(e -> { try { play(game,root); } catch (GameException ex) { ex.printStackTrace(); } });
 	    btnDeselect.setOnAction(e -> deselect(game));
 	    btnPlay.setPickOnBounds(false);
 	    btnDeselect.setPickOnBounds(false);
@@ -171,11 +295,6 @@ public class Main extends Application {
 	    	);
 	    MarbleView.setMarble(game, scene);
 	    BoardController.setUp(root, game);
-	    stage.setScene(scene);
-	    stage.setTitle("Resizable Card-Marble Game");
-	    stage.show();
-	}
-	public static void main(String[] args) {
-		launch(args);
+	    return scene;
 	}
 }

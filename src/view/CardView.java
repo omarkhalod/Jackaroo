@@ -10,7 +10,7 @@ import model.card.standard.Suit;
 
 public class CardView {
 	public static HashMap<Card,ImageView> mp=new HashMap<Card,ImageView>();
-	private static String id(int rank,Suit suit) {
+	public static String id(int rank,Suit suit) {
 		String out=""+rank;
 		if(suit==Suit.CLUB)
 			out+='c';
