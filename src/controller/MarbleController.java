@@ -39,10 +39,13 @@ public class MarbleController {
 		} catch (CannotFieldException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return;
 		} catch (IllegalDestroyException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return;
 		}
 		Main.updateBoard();
+		player.getMarbles().remove(0);
 	}
 }
