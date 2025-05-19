@@ -19,11 +19,7 @@ public class BoardController {
 	public static ArrayList<Point2D> trackPositions = new ArrayList<>();
 	public static ArrayList<ArrayList<Point2D>> safeZonePositions=new ArrayList<>();
 	public static ArrayList<ArrayList<Point2D>> homeZonePositions=new ArrayList<>();
-	public static ArrayList<ArrayList<Point2D>> emptyHomeCell = new ArrayList<>();
 	public static HashMap<Cell,Point2D> positions = new HashMap<>();
-	public static ArrayList<Cell> fullPath=new ArrayList<>();
-	public static ArrayList<Cell> sevenFirstPath=new ArrayList<>();
-	public static ArrayList<Cell> sevenSecondPath=new ArrayList<>();
 	public static void init() {
 		trackPositions.add(new Point2D(377,263));
 		double x=377;
@@ -191,8 +187,6 @@ public class BoardController {
 				homeZonePositions.get(i).set(j,homeZonePositions.get(i).get(j).add(offset));
 			}
 		}
-		for(int i=0;i<4;i++)
-			emptyHomeCell.add(new ArrayList<>());
 		ArrayList<Point2D> temp=homeZonePositions.get(1);
 		homeZonePositions.set(1,homeZonePositions.get(3));
 		homeZonePositions.set(3,temp);

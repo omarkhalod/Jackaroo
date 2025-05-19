@@ -3,6 +3,7 @@ package engine.board;
 import java.util.ArrayList;
 
 import controller.BoardController;
+import controller.Main;
 import controller.MarbleController;
 import engine.GameManager;
 import exception.CannotFieldException;
@@ -12,6 +13,7 @@ import exception.IllegalSwapException;
 import exception.InvalidMarbleException;
 import model.Colour;
 import model.player.Marble;
+import view.CardView;
 
 @SuppressWarnings("unused")
 public class Board implements BoardManager {
@@ -231,8 +233,8 @@ public class Board implements BoardManager {
             destroyMarble(marble);
             targetCell.setTrap(false);
             assignTrapCell();
+            CardView.trap=true;
         }
-        
 	}
     
     private void validateSwap(Marble marble_1, Marble marble_2) throws IllegalSwapException {
@@ -285,7 +287,6 @@ public class Board implements BoardManager {
     public void moveBy(Marble marble, int steps, boolean destroy) throws IllegalMovementException, IllegalDestroyException{
     	ArrayList<Cell> fullPath = validateSteps(marble, steps);
         validatePath(marble, fullPath, destroy);
-        BoardController.fullPath=fullPath;
         move(marble, fullPath, destroy);
     }
 
@@ -310,7 +311,6 @@ public class Board implements BoardManager {
 
         this.track.get(positionOnTrack).setMarble(null);
         this.gameManager.sendHome(marble);
-        MarbleController.destroyed.add(marble);
     }
 
     @Override

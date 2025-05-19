@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 import javafx.animation.FadeTransition;
@@ -11,6 +14,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
 import javafx.stage.Modality;
@@ -30,7 +34,6 @@ public class JackrooLauncher extends Application{
     private static final int BG_HEIGHT = 900;
     private static final String VIDEO_PATH =JackrooLauncher.class.getClass().getResource("/view/resources/gameplay/gameplay.mp4").toExternalForm();
     private MediaView mediaView;
-    
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -182,38 +185,29 @@ public class JackrooLauncher extends Application{
     	return getSplitDistance(primaryStage);
     }
 	public int getSplitDistance(Stage owner) {
-        Stage popup = new Stage();
-        popup.initOwner(owner);
-        popup.initModality(Modality.APPLICATION_MODAL);
-        popup.setTitle("Enter the split distance");
-
-        Label prompt = new Label("Please enter a whole number:");
-
-        TextField intField = new TextField();
-        intField.setMaxWidth(150);
-        UnaryOperator<TextFormatter.Change> filter = change -> {
-            String newText = change.getControlNewText();
-            return (newText.matches("\\d*")) ? change : null;
-        };
-        TextFormatter<Integer> formatter =
-            new TextFormatter<>(new IntegerStringConverter(), 0, filter);
-        intField.setTextFormatter(formatter);
-
-        Button ok = new Button("OK");
-        ok.setOnAction(e -> {
-            CardController.splitDistance = formatter.getValue();
-            popup.close();
+		List<Integer> choices = Arrays.asList(1,2,3,4,5,6);
+        ChoiceDialog<Integer> dialog = new ChoiceDialog<>(1, choices);
+        dialog.initOwner(primaryStage);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Pick a Number");
+        dialog.setHeaderText("Choose the split distance");
+        dialog.setContentText("Number:");
+        Optional<Integer> result = dialog.showAndWait();
+        result.ifPresent(number -> {
+            CardController.splitDistance=number;
         });
-
-        VBox layout = new VBox(10, prompt, intField, ok);
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(20));
-
-        popup.setScene(new Scene(layout));
-        popup.showAndWait();
         return CardController.splitDistance;
     }
-
+	public void popUp(String message) {
+		Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("An exception occurred");
+        alert.setContentText(message);
+		alert.initOwner(primaryStage);
+        // 2) Only block that window, not the whole application:
+        alert.initModality(Modality.WINDOW_MODAL);
+        alert.showAndWait();
+	}
 	public static void main(String[] args) {
         launch(args);
     }

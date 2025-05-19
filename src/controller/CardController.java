@@ -39,8 +39,6 @@ public class CardController {
     public static final VBox infoBox = new VBox(5);
     public static Card selected=null;
     public static int splitDistance=0;
-    public static Card discarded=null;
-    public static boolean skip=false;
 	public static void hoverOnCard(Card card,Game game) {
 		ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), CardView.mp.get(card));
 	    scaleUp.setToX(1.1);
@@ -90,22 +88,5 @@ public class CardController {
 			}
 			}
 		});
-	}
-	public static void discardCard(Game game,Card card,StackPane root) {
-		ImageView cardView=CardView.mp.get(card);
-		Image img;
-		if(card instanceof Standard) {
-			Standard cardn=(Standard) card;
-			img=new Image(MarbleView.class.getResourceAsStream("/view/resources/cards/"+CardView.id(cardn.getRank(),cardn.getSuit())+".png"));
-		}else {
-			img=new Image(MarbleView.class.getResourceAsStream("/view/resources/cards/joker.png"));
-		}
-		cardView.setImage(img);
-		((HBox)cardView.getParent()).getChildren().remove(cardView);
-		root.getChildren().add(cardView);
-		StackPane.setAlignment(cardView,Pos.CENTER);
-		cardView.setOnMouseClicked(null);
-		cardView.setOnMouseEntered(null);
-		cardView.setOnMouseExited(null);
 	}
 }

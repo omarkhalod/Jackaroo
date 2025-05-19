@@ -13,6 +13,8 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
@@ -53,10 +55,38 @@ public class Main {
 	public static Controller controller;
 	public static JackrooLauncher launcher;
 	public static ImageView firePit=new ImageView();
+	private static VBox playerTurns=new VBox(5);
+    private static Label currPlayerTurn=new Label();
+    private static Label nextPlayerTurn=new Label();
+    private static StackPane root;
+    public static void showTrapFlash() {
+        ImageView flash = new ImageView("/view/resources/TRAP.png");
+        flash.setFitWidth(200);
+        flash.setFitHeight(200);
+        flash.setOpacity(0.8);  // tweak as desired
+        Platform.runLater(() -> {
+            root.getChildren().add(flash);
+            PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+            pause.setOnFinished(evt -> {
+                root.getChildren().remove(flash);
+            });
+            pause.play();
+        });
+    }
 	public static void play(StackPane root) {
+		if(game.getPlayers().get(0).getSelectedCard().getName().equals("Seven")&&MarbleView.selectedMarbles.size()==2) {
+			try {
+				game.editSplitDistance(launcher.seven());
+			} catch (SplitOutOfRangeException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				launcher.popUp(e.getMessage());
+			}
+		}
 		try {
 			game.playPlayerTurn();
 		} catch (GameException e) {
+			launcher.popUp(e.getMessage());
 			e.printStackTrace();
 			if(game.getCurrentPlayer().getSelectedCard()!=null) {
 				game.endPlayerTurn();
@@ -72,11 +102,16 @@ public class Main {
 			}
 			return;
 		}
+		
 		game.endPlayerTurn();
 		updateBoard();
 		deselect();
 		updateHands();
 		updateFirePit();
+		if(CardView.trap) {
+			CardView.trap=false;
+			showTrapFlash();
+		}
 		PauseTransition pause = new PauseTransition(Duration.seconds(1));
 	    pause.setOnFinished(evt -> {
 	        playCPU(root,1);
@@ -85,10 +120,19 @@ public class Main {
 	}
 	public static void playCPU(StackPane root,int i){
 		controller.highlightCurrentPlayer(i%4);
+		currPlayerTurn.setText("Current Player: "+game.getCurrentPlayer().getName());
+		nextPlayerTurn.setText("Next player: "+game.getPlayers().get(MarbleController.id(game.getNextPlayerColour(), game)).getName());
 		if(i==4) {
 			if(!game.canPlayTurn()) {
 				game.endPlayerTurnNull();
+				updateBoard();
+				updateHands();
+				updateFirePit();
 				deselect();
+				if(CardView.trap) {
+					CardView.trap=false;
+					showTrapFlash();
+				}
 				PauseTransition pause = new PauseTransition(Duration.seconds(1));
 			    pause.setOnFinished(evt -> {
 			        playCPU(root,1);
@@ -98,9 +142,17 @@ public class Main {
 			}
 			return;
 		}
+		
 		if(!game.canPlayTurn()) {
 			game.endPlayerTurnNull();
+			updateBoard();
+			updateHands();
+			updateFirePit();
 			deselect();
+			if(CardView.trap) {
+				CardView.trap=false;
+				showTrapFlash();
+			}
 			PauseTransition pause = new PauseTransition(Duration.seconds(1));
 		    pause.setOnFinished(evt -> {
 		    	playCPU(root,i+1);
@@ -111,6 +163,7 @@ public class Main {
 		try {
 			game.getPlayers().get(i).play();
 		} catch (GameException e) {
+			launcher.popUp(e.getMessage());
 			e.printStackTrace();
 		}
 		game.endPlayerTurn();
@@ -118,6 +171,10 @@ public class Main {
 		updateHands();
 		updateFirePit();
 		deselect();
+		if(CardView.trap) {
+			CardView.trap=false;
+			showTrapFlash();
+		}
 		PauseTransition pause = new PauseTransition(Duration.seconds(1));
 	    pause.setOnFinished(evt -> {
 	    	playCPU(root,i+1);
@@ -194,6 +251,7 @@ public class Main {
 	    handCPU3.setPickOnBounds(false);
 	}
 	public static void updateFirePit() {
+		firePit.setVisible(true);
 		ArrayList<Card> firePitt=game.getFirePit();
 		if(firePitt.isEmpty()) {
 			firePit.setVisible(false);
@@ -244,7 +302,7 @@ public class Main {
 		return Color.YELLOW;
 	}
 	public Scene start(String playerName) throws Exception {
-	    StackPane root = new StackPane();
+	    root = new StackPane();
 	    firePit.setPreserveRatio(true);
 	    firePit.setFitWidth(100);
         firePit.setFitHeight(139);
@@ -284,22 +342,11 @@ public class Main {
 
 	    Button btnPlay     = new Button("Play");
 	    Button btnDeselect = new Button("Deselect All");
-	    Button btnDiscard = new Button ("Discard");
-	    btnDiscard.setOnAction(e->{
-			CardController.discardCard(game,CardController.selected,root);
-			game.getCurrentPlayer().getHand().remove(CardController.selected);
-			deselect();
-			game.endPlayerTurn();
-			PauseTransition pause = new PauseTransition(Duration.seconds(1));
-			pause.play();
-			playCPU(root,1);
-			
-	    });
 	    btnPlay.setOnAction(e -> { play(root); });
 	    btnDeselect.setOnAction(e -> deselect());
 	    btnPlay.setPickOnBounds(false);
 	    btnDeselect.setPickOnBounds(false);
-	    HBox buttonRow = new HBox(20, btnPlay, btnDeselect,btnDiscard);
+	    HBox buttonRow = new HBox(20, btnPlay, btnDeselect);
 	    buttonRow.setAlignment(Pos.CENTER);
 	    buttonRow.setPickOnBounds(false);
 	    VBox bottomBar = new VBox(10, buttonRow, handPlayer);
@@ -340,6 +387,28 @@ public class Main {
 	    	order.add(colourToColor(player.getColour()));
 	    }
 	    controller.initColors(order);
+	    currPlayerTurn.setText("Current player: "+playerName);
+	    nextPlayerTurn.setText("Next Player: CPU 1");
+	    StackPane.setAlignment(playerTurns,Pos.BOTTOM_RIGHT);
+	    currPlayerTurn.setStyle(whiteText);
+	    nextPlayerTurn.setStyle(whiteText);
+	    currPlayerTurn.setWrapText(true);
+	    nextPlayerTurn.setWrapText(true);
+	    playerTurns.setStyle(
+	    	    "-fx-background-color: rgba(30,30,30,0.85);" +
+	    	    "-fx-background-radius: 10;" +
+	    	    "-fx-padding: 10;" +
+	    	    "-fx-border-color: white;" +
+	    	    "-fx-border-width: 1;" +
+	    	    "-fx-border-radius: 10;"
+	    	);
+	    playerTurns.getChildren().add(currPlayerTurn);
+	    playerTurns.getChildren().add(nextPlayerTurn);
+	    playerTurns.setPickOnBounds(false);
+	    playerTurns.setPrefWidth(200);
+	    playerTurns.setMinSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
+	    playerTurns.setMaxSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
+	    root.getChildren().add(playerTurns);
 	    return scene;
 	}
 }
