@@ -59,6 +59,15 @@ public class JackrooLauncher extends Application{
         stage.show();
     }
 
+    public void restartGame() {
+        primaryStage.setScene(landingScene);
+        primaryStage.centerOnScreen();
+        primaryStage.setFullScreen(true);
+        primaryStage.setTitle("Jackaroo Launcher");
+        primaryStage.show();
+    }
+    
+    
     private Parent createLandingRoot() {
     	// importing video
         Media media = new Media(VIDEO_PATH);
@@ -176,11 +185,17 @@ public class JackrooLauncher extends Application{
 		this.primaryStage.setFullScreen(true);
 		this.primaryStage.setTitle("Jackaroo – Let’s Play!");
 		this.primaryStage.show();
-		
-		
-		
+			
 		
 	}
+    
+    
+    
+    
+    
+    
+    
+    
     public int seven() {
     	return getSplitDistance(primaryStage);
     }
@@ -208,6 +223,8 @@ public class JackrooLauncher extends Application{
         alert.initModality(Modality.WINDOW_MODAL);
         alert.showAndWait();
 	}
+	
+	
 	public static void main(String[] args) {
         launch(args);
     }
