@@ -1,0 +1,64 @@
+/* 1) Entire controls box: rectangle with border */
+.controls-box {
+  /* centered VBox around text, button, etc. */
+  -fx-background-color: rgba(0, 0, 0, 0.3);
+  -fx-padding: 30;                /* inner spacing */
+  -fx-border-color: white;        /* border line color */
+  -fx-border-width: 2px;          /* border thickness */
+  -fx-border-radius: 8px;         /* rounded corners on the box */
+  -fx-background-radius: 8px;     /* match radius of background fill */
+  
+  /* force box to shrink-wrap children, not fill all space */
+  -fx-max-width: 440;
+  -fx-max-height: 720px;
+}
+
+/* 2) Title label, pinned near top of the box */
+.title-label {
+  -fx-font-size: 62px;
+  -fx-text-fill: white;
+  /* push it up a bit inside the box */
+  -fx-padding: 0 0 20 0;  /* bottom padding to separate from next control */
+}
+
+/* 3) Prompt label */
+.prompt-label {
+  -fx-font-size: 32px;
+  -fx-text-fill: white;
+  -fx-padding: 0 0 20 0;
+}
+
+/* 4) Rounded TextField, 80% width of its parent box */
+.rounded-text-field {
+  -fx-pref-width: 80%;            /* 80% of the parent container’s width */
+  -fx-background-radius: 20px;    /* make its corners round */
+  -fx-border-radius: 20px;        /* match the border to the background shape */
+  -fx-border-color: white;        /* outline color */
+  -fx-border-width: 1.5px;        /* outline thickness */
+  -fx-padding: 6 10 6 10;         /* inside padding: top/right/bottom/left */
+}
+
+/* 5) Start button styling (optional tweak) */
+.start-button {
+  -fx-font-size: 14px;
+  -fx-cursor: hand;
+  -fx-background-radius: 6px;
+  /* (You can add hover rules here if you like) */
+}
+
+/* 1) Push the header 10px down from the top of the dialog */
+.dialog-pane .header-panel {
+  -fx-padding: 10px 10px 0 10px;  /* top right bottom left */
+}
+
+/* 2) Center the content text (or any custom Node you put in content) */
+.dialog-pane .content {
+  -fx-alignment: center;          /* horiz + vert centering */
+  -fx-padding: 20px 10px 20px 10px; /* optional extra padding */
+}
+
+/* 3) Center the OK button in the button bar */
+.dialog-pane .button-bar {
+  -fx-alignment: center;
+  -fx-padding: 0 10px 10px 10px;
+}

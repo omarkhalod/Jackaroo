@@ -3,10 +3,14 @@ package model.player;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import controller.CardController;
+import controller.Main;
 import engine.board.BoardManager;
 import exception.GameException;
+import javafx.scene.image.ImageView;
 import model.Colour;
 import model.card.Card;
+import view.MarbleView;
 
 public class CPU extends Player {
 	private final BoardManager boardManager;
@@ -26,12 +30,12 @@ public class CPU extends Player {
         cards.addAll(this.getHand());
         int initialHandSize = cards.size();
         Collections.shuffle(cards);
-        
+        CardController.selected=cards.get(0);
         // Iterate through each card in the shuffled hand.
         for (Card card : cards) {
             // Select the card to be played.
             this.selectCard(card);
-            
+            CardController.selected=card;
             // Prepare a list to keep track of valid marble counts for the action.
             ArrayList<Integer> counts = new ArrayList<>();
             for(int i = 0; i < 3; i++) { // Check for 0 or 1 or 2 marbles to act upon.
@@ -55,6 +59,7 @@ public class CPU extends Player {
                     try {
                         // Attempt to act with no marbles if the count is 0.
                         getSelectedCard().act(new ArrayList<>());
+                        MarbleView.selectedMarbles=new ArrayList<>();
                         return; // Return after successful action.
                     }
                     catch(Exception e) {
@@ -70,6 +75,9 @@ public class CPU extends Player {
                         if(card.validateMarbleColours(toSend)) {
                             try {
                                 getSelectedCard().act(toSend);
+                                ArrayList<ImageView> marbs=new ArrayList<>();
+                                marbs.add(MarbleView.mp.get(toSend.get(0)));
+                                MarbleView.selectedMarbles=marbs;
                                 return; // Return after successful action.
                             }
                             catch(Exception e) {
@@ -90,6 +98,10 @@ public class CPU extends Player {
                             if(card.validateMarbleColours(toSend)) {
                                 try {
                                     getSelectedCard().act(toSend);
+                                    ArrayList<ImageView> marbs=new ArrayList<>();
+                                    marbs.add(MarbleView.mp.get(toSend.get(0)));
+                                    marbs.add(MarbleView.mp.get(toSend.get(1)));
+                                    MarbleView.selectedMarbles=marbs;
                                     return; // Return after successful action.
                                 }
                                 catch(Exception e) {
@@ -104,8 +116,9 @@ public class CPU extends Player {
         }
         
         // If no cards were played, select the first card by default.
-        if (cards.size() == initialHandSize)
+        if (cards.size() == initialHandSize) 
             this.selectCard(this.getHand().get(0));
+        
     }
     
 }

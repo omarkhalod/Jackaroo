@@ -65,7 +65,7 @@
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label text="CPU 1" StackPane.alignment="TOP_RIGHT">
+                  <Label text="CPU 3" StackPane.alignment="TOP_RIGHT">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -75,7 +75,7 @@
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label text="CPU 3" StackPane.alignment="BOTTOM_LEFT">
+                  <Label text="CPU 1" StackPane.alignment="BOTTOM_LEFT">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -771,34 +771,6 @@
                               <StackPane layoutX="9.0" layoutY="-9.0">
                                  <children>
                                     <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <ImageView fx:id="p3m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </StackPane>
-                              <StackPane layoutX="27.0" layoutY="9.0">
-                                 <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <ImageView fx:id="p3m2" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </StackPane>
-                              <StackPane layoutX="9.0" layoutY="27.0">
-                                 <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <ImageView fx:id="p3m1" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </StackPane>
-                              <StackPane layoutX="-9.0" layoutY="9.0">
-                                 <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
-                                    <ImageView fx:id="p3m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </StackPane>
-                           </children>
-                        </Group>
-                        <Group layoutX="508.0" layoutY="132.0">
-                           <children>
-                              <StackPane layoutX="9.0" layoutY="-9.0">
-                                 <children>
-                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
                                     <ImageView fx:id="p1m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
@@ -818,6 +790,34 @@
                                  <children>
                                     <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
                                     <ImageView fx:id="p1m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </Group>
+                        <Group layoutX="508.0" layoutY="132.0">
+                           <children>
+                              <StackPane layoutX="9.0" layoutY="-9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m3" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="27.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m2" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="9.0" layoutY="27.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m1" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </StackPane>
+                              <StackPane layoutX="-9.0" layoutY="9.0">
+                                 <children>
+                                    <Circle fill="DODGERBLUE" radius="9.0" stroke="BLACK" strokeType="INSIDE" />
+                                    <ImageView fx:id="p3m0" fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </StackPane>
                            </children>

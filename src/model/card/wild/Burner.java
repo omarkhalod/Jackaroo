@@ -22,6 +22,7 @@ public class Burner extends Wild {
     @Override
     public void act(ArrayList<Marble> marbles) throws ActionException, InvalidMarbleException {
         boardManager.destroyMarble(marbles.get(0));
+        
     }
     
 }

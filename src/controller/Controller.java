@@ -25,7 +25,7 @@ import model.player.Player;
 import view.MarbleView;
 
 public class Controller implements Initializable{
-	private ArrayList<ArrayList<ImageView>> playerMarbles = new ArrayList<>();	
+	public ArrayList<ArrayList<ImageView>> playerMarbles = new ArrayList<>();	
 	@FXML private ImageView p0m0, p0m1, p0m2, p0m3;
 	@FXML private ImageView p1m0, p1m1, p1m2, p1m3;
 	@FXML private ImageView p2m0, p2m1, p2m2, p2m3;
@@ -56,21 +56,9 @@ public class Controller implements Initializable{
 	            });
 	        }
 	    }
-		humanCircle.setFill(Color.RED);
-		humanCircle.setStrokeWidth(5);
-		humanCircle.setStroke(Color.GOLD);
-		cpu1Circle.setFill(Color.GREEN);
-		cpu1Circle.setStrokeWidth(5);
-		cpu2Circle.setFill(Color.BLUE);
-		cpu2Circle.setStrokeWidth(5);
-		cpu3Circle.setFill(Color.YELLOW);
-		cpu3Circle.setStrokeWidth(5);
+		
 	}
-	 public void highlightCurrentPlayer(int playerIndex) {
-		humanCircle.setFill(Color.RED);
-		cpu1Circle.setFill(Color.GREEN);
-		cpu2Circle.setFill(Color.BLUE);
-		cpu3Circle.setFill(Color.YELLOW);   
+	 public void highlightCurrentPlayer(int playerIndex) { 
 		humanCircle.setStroke(Color.BLACK);
 		cpu1Circle.setStroke(Color.BLACK);
 		cpu2Circle.setStroke(Color.BLACK);
@@ -79,12 +67,23 @@ public class Controller implements Initializable{
 		// Highlight current player
 		switch(playerIndex) {
 			case 0: humanCircle.setStroke(Color.GOLD); break;
-			case 1: cpu1Circle.setStroke(Color.GOLD); break;
+			case 1: cpu3Circle.setStroke(Color.GOLD); break;
 			case 2: cpu2Circle.setStroke(Color.GOLD); break;
-			case 3: cpu3Circle.setStroke(Color.GOLD); break;
+			case 3: cpu1Circle.setStroke(Color.GOLD); break;
 		}
 	 }
 	 public void setName(String name) {
 		 this.name.setText(name);
+	 }
+	 public void initColors(ArrayList<Color> order) {
+		 humanCircle.setFill(order.get(0));
+			humanCircle.setStrokeWidth(5);
+			humanCircle.setStroke(Color.GOLD);
+			cpu3Circle.setFill(order.get(1));
+			cpu3Circle.setStrokeWidth(5);
+			cpu2Circle.setFill(order.get(2));
+			cpu2Circle.setStrokeWidth(5);
+			cpu1Circle.setFill(order.get(3));
+			cpu1Circle.setStrokeWidth(5);
 	 }
 }

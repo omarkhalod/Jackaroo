@@ -118,6 +118,28 @@ public class Game implements GameManager {
         }
         
     }
+    public void endPlayerTurnNull() {
+        players.get(currentPlayerIndex).deselectAll();
+        
+        currentPlayerIndex = (currentPlayerIndex + 1) % 4;
+        
+        if(currentPlayerIndex == 0 && turn < 3) 
+            turn++;
+        
+        else if (currentPlayerIndex == 0 && turn == 3) {
+        	turn = 0;
+        	for (Player p : players) {
+              if(Deck.getPoolSize() < 4) {
+	              Deck.refillPool(firePit);
+	              firePit.clear();
+              }
+              ArrayList<Card> newHand = Deck.drawCards();
+              p.setHand(newHand);
+        	}
+        		
+        }
+        
+    }
 
     public Colour checkWin() {
         for(SafeZone safeZone : board.getSafeZones()) 

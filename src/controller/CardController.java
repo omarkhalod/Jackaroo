@@ -40,6 +40,7 @@ public class CardController {
     public static Card selected=null;
     public static int splitDistance=0;
     public static Card discarded=null;
+    public static boolean skip=false;
 	public static void hoverOnCard(Card card,Game game) {
 		ScaleTransition scaleUp = new ScaleTransition(Duration.millis(200), CardView.mp.get(card));
 	    scaleUp.setToX(1.1);

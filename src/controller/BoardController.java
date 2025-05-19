@@ -15,7 +15,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 
 public class BoardController {
-	public static Pane overlay;
+	public static Pane overlay=new Pane();;
 	public static ArrayList<Point2D> trackPositions = new ArrayList<>();
 	public static ArrayList<ArrayList<Point2D>> safeZonePositions=new ArrayList<>();
 	public static ArrayList<ArrayList<Point2D>> homeZonePositions=new ArrayList<>();
@@ -193,9 +193,14 @@ public class BoardController {
 		}
 		for(int i=0;i<4;i++)
 			emptyHomeCell.add(new ArrayList<>());
+		ArrayList<Point2D> temp=homeZonePositions.get(1);
+		homeZonePositions.set(1,homeZonePositions.get(3));
+		homeZonePositions.set(3,temp);
+		temp=safeZonePositions.get(1);
+		safeZonePositions.set(1,safeZonePositions.get(3));
+		safeZonePositions.set(3,temp);
 	}
 	public static void setUp(StackPane root,Game game) {
-		overlay=new Pane();
 		StackPane.setAlignment(overlay,Pos.CENTER);
 		overlay.setPrefSize(100,100);
 		overlay.setMinHeight(Region.USE_PREF_SIZE);
@@ -216,6 +221,5 @@ public class BoardController {
 				positions.put(safeZones.get(i).getCells().get(j),safeZonePositions.get(i).get(j));
 			}
 		}
-		
 	}
 }

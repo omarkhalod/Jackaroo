@@ -52,7 +52,7 @@ public class MarbleController {
 				trap=false;
 		}
 		if(trap) {
-			seq.getChildren().add(destroyMarble(game,fullPath.get(0).getMarble(),x,y));
+			destroyMarble(game,fullPath.get(0).getMarble(),x,y);
 		}
 		seq.play();
 	}
@@ -61,21 +61,28 @@ public class MarbleController {
 		Cell base=game.getBoard().getTrack().get(game.getBoard().publicBasePosition(colour));
 		Marble marble=base.getMarble();
 		ImageView marbleView=MarbleView.mp.get(marble);
+		if(marble==null) {
+			System.out.println("NULL");
+			System.out.println(game.getCurrentPlayer().getMarbles().size());
+			System.out.println(game.getCurrentPlayer().getSelectedCard());
+			System.out.println(game.getCurrentPlayer().getName());
+		}
 		Point2D old=new Point2D(marbleView.getLayoutX(),marbleView.getLayoutY());
 		BoardController.emptyHomeCell.get(id(colour,game)).add(old);
-		((StackPane)marbleView.getParent()).getChildren().remove(marbleView);
-		BoardController.overlay.getChildren().add(marbleView);
+		if(marbleView.getParent() instanceof StackPane) {
+			((StackPane)marbleView.getParent()).getChildren().remove(marbleView);
+			BoardController.overlay.getChildren().add(marbleView);
+		}
 		marbleView.setLayoutX(BoardController.positions.get(base).getX());
 		marbleView.setLayoutY(BoardController.positions.get(base).getY());
 	}
-	public static TranslateTransition destroyMarble(Game game,Marble marble,double x0,double y0) {
-		TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5),MarbleView.mp.get(marble));
+	public static void destroyMarble(Game game,Marble marble,double x0,double y0) {
 		Colour colour=marble.getColour();
 		Point2D target=BoardController.emptyHomeCell.get(id(colour,game)).remove(0);
 		double x=target.getX();
 		double y=target.getY();
-		tt.setByX(x0 - x);
-		tt.setByY(y0 - y);
-		return tt;
+		ImageView marb=MarbleView.mp.get(marble);
+		marb.setLayoutX(x);
+		marb.setLayoutY(y);
 	}
 }

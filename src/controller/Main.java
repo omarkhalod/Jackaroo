@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -29,199 +30,140 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Colour;
 import model.card.Card;
 import model.card.Deck;
 import model.card.standard.Ace;
+import model.card.wild.Wild;
 import model.player.Marble;
 import model.player.Player;
 import view.CardView;
 import view.MarbleView;
 import engine.board.*;
+import exception.CannotFieldException;
 import exception.GameException;
+import exception.IllegalDestroyException;
 import exception.InvalidCardException;
+import exception.SplitOutOfRangeException;
 import engine.*;
 
 public class Main {
     private static Game game;
     private static HBox handPlayer, handCPU1, handCPU2, handCPU3;	
-	private static Controller controller;
+	public static Controller controller;
 	public static JackrooLauncher launcher;
-	public static void play(Game game,StackPane root) throws GameException {
-		if(CardController.selected.getName().equals("Seven")&&MarbleView.selectedMarbles.size()==2) {
-			int split=launcher.seven();
-			game.editSplitDistance(split);
+	public static ImageView firePit=new ImageView();
+	public static void play(StackPane root) {
+		try {
 			game.playPlayerTurn();
-			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(0),BoardController.sevenFirstPath);
-			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(1),BoardController.sevenSecondPath);
-			deselect(game);
+		} catch (GameException e) {
+			e.printStackTrace();
+			if(game.getCurrentPlayer().getSelectedCard()!=null) {
+				game.endPlayerTurn();
+				updateBoard();
+				deselect();
+				updateHands();
+				updateFirePit();
+				PauseTransition pause = new PauseTransition(Duration.seconds(1));
+			    pause.setOnFinished(evt -> {
+			        playCPU(root,1);
+			    });
+			    pause.play();
+			}
 			return;
 		}
-		game.playPlayerTurn();
-		if(MarbleView.selectedMarbles.isEmpty()) {
-			if(CardController.selected.getName().equals("Queen")) {
-				CardController.discardCard(game,CardController.selected,root);
-				CardController.discardCard(game,CardController.discarded,root);
-				deselect(game);
+		game.endPlayerTurn();
+		updateBoard();
+		deselect();
+		updateHands();
+		updateFirePit();
+		PauseTransition pause = new PauseTransition(Duration.seconds(1));
+	    pause.setOnFinished(evt -> {
+	        playCPU(root,1);
+	    });
+	    pause.play();
+	}
+	public static void playCPU(StackPane root,int i){
+		controller.highlightCurrentPlayer(i%4);
+		if(i==4) {
+			if(!game.canPlayTurn()) {
+				game.endPlayerTurnNull();
+				deselect();
+				PauseTransition pause = new PauseTransition(Duration.seconds(1));
+			    pause.setOnFinished(evt -> {
+			        playCPU(root,1);
+			    });
+			    pause.play();
 				return;
-			}else
-				MarbleController.fieldMarble(game);
-			
-		}else if(MarbleView.selectedMarbles.size()==1) {
-			MarbleController.moveMarble(game,MarbleView.selectedMarbles.get(0),BoardController.fullPath);
-		}else {	
-			double x=MarbleView.selectedMarbles.get(0).getLayoutX();
-			double y=MarbleView.selectedMarbles.get(0).getLayoutY();
-			MarbleView.selectedMarbles.get(0).setLayoutX(MarbleView.selectedMarbles.get(1).getLayoutX());
-			MarbleView.selectedMarbles.get(0).setLayoutY(MarbleView.selectedMarbles.get(1).getLayoutY());
-			MarbleView.selectedMarbles.get(1).setLayoutX(x);
-			MarbleView.selectedMarbles.get(1).setLayoutY(y);
+			}
+			return;
 		}
-		CardController.discardCard(game,CardController.selected,root);
-		deselect(game);
+		if(!game.canPlayTurn()) {
+			game.endPlayerTurnNull();
+			deselect();
+			PauseTransition pause = new PauseTransition(Duration.seconds(1));
+		    pause.setOnFinished(evt -> {
+		    	playCPU(root,i+1);
+		    });
+		    pause.play();
+			return;
+		}
+		try {
+			game.getPlayers().get(i).play();
+		} catch (GameException e) {
+			e.printStackTrace();
+		}
+		game.endPlayerTurn();
+		updateBoard();
+		updateHands();
+		updateFirePit();
+		deselect();
+		PauseTransition pause = new PauseTransition(Duration.seconds(1));
+	    pause.setOnFinished(evt -> {
+	    	playCPU(root,i+1);
+	    });
+	    pause.play();
 	}
-	private static void playCPUTurnsSequentially() {
-	    if (game.getCurrentPlayer() != game.getPlayers().get(0)) {
-	    	if(!game.canPlayTurn()){
-	    		game.endPlayerTurn();
-	    		playCPUTurnsSequentially();
-	    	}
-	    	else{
-	    		System.out.println("Playing turn " + game.getCurrentPlayer().getName());
-		    	PauseTransition pause = new PauseTransition(Duration.seconds(1));
-		        pause.setOnFinished(event -> {
-		            try {
-		                game.playPlayerTurn(); // CPU makes move
-		                System.out.println("Card played: " + game.getCurrentPlayer().getSelectedCard());
-//		                game.endPlayerTurn();
-		                endTurn();
-
-		            } catch (GameException e) {
-		                e.printStackTrace();
-		            }
-		            
-		            // Continue with the next CPU if not back to human
-		            refreshUI();
-		            playCPUTurnsSequentially();
-		        });
-		        pause.play();
-		    }
-	    	}
-	    	
+	public static void updateBoard() {
+		for(Cell cell:game.getBoard().getTrack()) {
+			if(cell.getMarble()!=null) {
+				ImageView marb=MarbleView.mp.get(cell.getMarble());
+				marb.setLayoutX(BoardController.positions.get(cell).getX());
+				marb.setLayoutY(BoardController.positions.get(cell).getY());
+			}
+		}
+		ArrayList<Marble> actionableMarbles=game.getBoard().getActionableMarbles();
+		ArrayList<ArrayList<Point2D>> homeZones=BoardController.homeZonePositions;
+		int[] free=new int[4];
+		for(Marble marble:MarbleView.mp.keySet()) {
+			if(actionableMarbles.contains(marble))
+				continue;
+			int id=MarbleController.id(marble.getColour(), game);
+			double x=homeZones.get(id).get(free[id]).getX();
+			double y=homeZones.get(id).get(free[id]).getY();
+			free[id]++;
+			MarbleView.mp.get(marble).setLayoutX(x);
+			MarbleView.mp.get(marble).setLayoutY(y);
+		}
+		ArrayList<SafeZone> safeZones= game.getBoard().getSafeZones();
+		for(SafeZone safeZone:safeZones) {
+			for(Cell cell:safeZone.getCells()) {
+				if(cell.getMarble()!=null) {
+					ImageView marb=MarbleView.mp.get(cell.getMarble());
+					marb.setLayoutX(BoardController.positions.get(cell).getX());
+					marb.setLayoutY(BoardController.positions.get(cell).getY());
+				}
+			}
+		}
 	}
-	private static void refreshUI() {
-	    updateHands();
-	    deselect(game);
-
-	    int current = game.getPlayers().indexOf(game.getCurrentPlayer());
-	    if (controller != null) {
-	        Platform.runLater(() -> controller.highlightCurrentPlayer(current));
-	    }
-	}
-    public static void endTurn() {
-        game.endPlayerTurn();
-        updateHands();
-        deselect(game);
-        
-        // Highlight current player
-        int currentPlayerIndex = game.getPlayers().indexOf(game.getCurrentPlayer());
-        if (controller != null) {
-            Platform.runLater(() -> {
-                controller.highlightCurrentPlayer(currentPlayerIndex);
-            });
-        }
-    }
-	private static void updateHands() {
-        // Clear current hands
-        handPlayer.getChildren().clear();
-        handCPU1.getChildren().clear();
-        handCPU2.getChildren().clear();
-        handCPU3.getChildren().clear();
-        
-        // Update player hand (human)
-		
-//		handPlayer.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-        for (Card c : game.getPlayers().get(0).getHand()) {
-        	
-            ImageView iv = CardView.mp.get(c);
-            iv.setFitWidth(100);
-            iv.setFitHeight(139);
-//            iv.setEffect(glow);
-            CardController.hoverOnCard(c, game);
-            CardController.leaveCard(c, game);
-            CardController.clickCard(c, game);
-            handPlayer.getChildren().add(iv);
-        }
-        
-        // Update CPU hands (showing backs)
-        for (int i = 1; i < 4; i++) {
-            for (Card c : game.getPlayers().get(i).getHand()) {
-                ImageView iv = new ImageView("/view/resources/cards/back.png");
-                CardView.mp.put(c, iv);
-                iv.setFitWidth(100);
-                iv.setFitHeight(139);
-                (i==1 ? handCPU1 : i==2 ? handCPU2 : handCPU3).getChildren().add(iv);
-            }
-        }
-        
-  
-    }
-	public static void deselect(Game game) {
-		Card temp=CardController.selected;
-		CardController.selected=null;
-		game.deselectAll();
-        CardController.descLabel.setText("");
-        CardController.nameLabel.setText("");
-        CardController.suitLabel.setText("");
-        CardController.rankLabel.setText("");
-        if(temp!=null) {
-        	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardView.mp.get(temp));
-	    	scaleDown.setToX(1.0);
-	    	scaleDown.setToY(1.0);
-	    	scaleDown.playFromStart();
-        }
-	    ArrayList<ImageView> selected=MarbleView.selectedMarbles;
-	    DropShadow shadow=new DropShadow();
-	    for(ImageView marble:selected) {
-	    	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), marble);
-	    	scaleDown.setToX(1.0);
-	    	scaleDown.setToY(1.0);
-	    	scaleDown.playFromStart();
-	    	marble.setEffect(shadow);
-	    }
-	    MarbleView.selectedMarbles.clear();
-	}
-	
-	public Scene start(String playerName) throws Exception {
-	    StackPane root = new StackPane();
-	    root.setPadding(new Insets(20));
-	    Rectangle2D bound=Screen.getPrimary().getVisualBounds();
-	    double width=bound.getWidth();
-	    double height=bound.getHeight();
-	    Scene scene = new Scene(root, width, height);
-	    FXMLLoader loader = new FXMLLoader(getClass().getResource("Board.fxml"));
-	    AnchorPane board = loader.load();
-	    controller = loader.getController();
-	    root.getChildren().add(board);
-	    controller.setName(playerName);
-	    game = new Game(playerName);
+	public static void updateHands() {
 	    ArrayList<Card> playerHand = game.getPlayers().get(0).getHand();
-	    CardView.hash(playerHand);
+		handPlayer.getChildren().clear();
+	    handCPU1.getChildren().clear();
+	    handCPU2.getChildren().clear();
+	    handCPU3.getChildren().clear();
 	    DropShadow glow = new DropShadow();
-
-	    CardController.infoBox.getChildren().addAll(CardController.nameLabel,CardController.rankLabel,CardController.descLabel,CardController.suitLabel);
-	    CardController.infoBox.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
-	    root.getChildren().add(CardController.infoBox);
-	    StackPane.setAlignment(CardController.infoBox,Pos.BOTTOM_LEFT);
-
-	    handPlayer = new HBox(20);
-	    handCPU1   = new HBox(20);
-	    handCPU2   = new HBox(20);
-	    handCPU3   = new HBox(20);
-
-	    handCPU1.setRotate(90);
-	    handCPU2.setRotate(180);
-	    handCPU3.setRotate(270);
-
+	    CardView.hash(playerHand);
 	    for (Card c : playerHand) {
 	        ImageView iv = CardView.mp.get(c);
 	        iv.setFitWidth(100);
@@ -250,22 +192,114 @@ public class Main {
 	    handCPU1.setPickOnBounds(false);
 	    handCPU2.setPickOnBounds(false);
 	    handCPU3.setPickOnBounds(false);
+	}
+	public static void updateFirePit() {
+		ArrayList<Card> firePitt=game.getFirePit();
+		if(firePitt.isEmpty()) {
+			firePit.setVisible(false);
+			return;
+		}
+		CardView.hash(firePitt);
+		for(Card card:firePitt) {
+			ImageView cardView=CardView.mp.get(card);
+			cardView.setOnMouseClicked(null);
+			cardView.setOnMouseEntered(null);
+			cardView.setOnMouseExited(null);
+		}
+		Card card=firePitt.get(firePitt.size()-1);
+		firePit.setImage(CardView.mp.get(card).getImage());
+	}
+	public static void deselect() {
+		Card temp=CardController.selected;
+		CardController.selected=null;
+		game.deselectAll();
+        CardController.descLabel.setText("");
+        CardController.nameLabel.setText("");
+        CardController.suitLabel.setText("");
+        CardController.rankLabel.setText("");
+        if(temp!=null) {
+        	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardView.mp.get(temp));
+	    	scaleDown.setToX(1.0);
+	    	scaleDown.setToY(1.0);
+	    	scaleDown.playFromStart();
+        }
+	    ArrayList<ImageView> selected=MarbleView.selectedMarbles;
+	    DropShadow shadow=new DropShadow();
+	    for(ImageView marble:selected) {
+	    	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), marble);
+	    	scaleDown.setToX(1.0);
+	    	scaleDown.setToY(1.0);
+	    	scaleDown.playFromStart();
+	    	marble.setEffect(shadow);
+	    }
+	    MarbleView.selectedMarbles.clear();
+	}
+	public static Color colourToColor(Colour colour) {
+		if(colour==Colour.RED)
+			return Color.RED;
+		if(colour==Colour.BLUE)
+			return Color.BLUE;
+		if(colour==Colour.GREEN)
+			return Color.GREEN;
+		return Color.YELLOW;
+	}
+	public Scene start(String playerName) throws Exception {
+	    StackPane root = new StackPane();
+	    firePit.setPreserveRatio(true);
+	    firePit.setFitWidth(100);
+        firePit.setFitHeight(139);
+	    root.setPadding(new Insets(20));
+	    Rectangle2D bound=Screen.getPrimary().getVisualBounds();
+	    double width=bound.getWidth();
+	    double height=bound.getHeight();
+	    Scene scene = new Scene(root, width, height);
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("Board.fxml"));
+	    AnchorPane board = loader.load();
+	    controller = loader.getController();
+	    root.getChildren().add(board);
+	    controller.setName(playerName);
+	    game = new Game(playerName);
+	    ArrayList<Card> playerHand = game.getPlayers().get(0).getHand();
+	    CardView.hash(playerHand);
+	    CardController.infoBox.getChildren().addAll(CardController.nameLabel,CardController.rankLabel,CardController.descLabel,CardController.suitLabel);
+	    CardController.infoBox.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+	    root.getChildren().add(CardController.infoBox);
+	    StackPane.setAlignment(CardController.infoBox,Pos.BOTTOM_LEFT);
+	    handPlayer=new HBox(20);
+	    handCPU1=new HBox(20);
+	    handCPU2=new HBox(20);
+	    handCPU3=new HBox(20);
+	    handCPU1.setRotate(270);
+	    handCPU2.setRotate(180);
+	    handCPU3.setRotate(90);
+	    updateHands();
 	    root.getChildren().add(handPlayer);
 	    StackPane.setAlignment(handPlayer, Pos.BOTTOM_CENTER);
 	    root.getChildren().add(handCPU1);
-	    StackPane.setAlignment(handCPU1, Pos.CENTER_RIGHT);
+	    StackPane.setAlignment(handCPU1, Pos.CENTER_LEFT);
 	    root.getChildren().add(handCPU2);
 	    StackPane.setAlignment(handCPU2, Pos.TOP_CENTER);
 	    root.getChildren().add(handCPU3);
-	    StackPane.setAlignment(handCPU3, Pos.CENTER_LEFT);
+	    StackPane.setAlignment(handCPU3, Pos.CENTER_RIGHT);
 
 	    Button btnPlay     = new Button("Play");
 	    Button btnDeselect = new Button("Deselect All");
-	    btnPlay.setOnAction(e -> { try { play(game,root); } catch (GameException ex) { ex.printStackTrace(); } });
-	    btnDeselect.setOnAction(e -> deselect(game));
+	    Button btnDiscard = new Button ("Discard");
+	    btnDiscard.setOnAction(e->{
+			CardController.discardCard(game,CardController.selected,root);
+			game.getCurrentPlayer().getHand().remove(CardController.selected);
+			deselect();
+			game.endPlayerTurn();
+			PauseTransition pause = new PauseTransition(Duration.seconds(1));
+			pause.play();
+			playCPU(root,1);
+			
+	    });
+	    btnPlay.setOnAction(e -> { play(root); });
+	    btnDeselect.setOnAction(e -> deselect());
 	    btnPlay.setPickOnBounds(false);
 	    btnDeselect.setPickOnBounds(false);
-	    HBox buttonRow = new HBox(20, btnPlay, btnDeselect);
+	    HBox buttonRow = new HBox(20, btnPlay, btnDeselect,btnDiscard);
 	    buttonRow.setAlignment(Pos.CENTER);
 	    buttonRow.setPickOnBounds(false);
 	    VBox bottomBar = new VBox(10, buttonRow, handPlayer);
@@ -295,6 +329,17 @@ public class Main {
 	    	);
 	    MarbleView.setMarble(game, scene);
 	    BoardController.setUp(root, game);
+	    root.getChildren().add(firePit);
+	    StackPane.setAlignment(firePit,Pos.CENTER);
+	    firePit.setPickOnBounds(false);
+	    DropShadow shadow=new DropShadow();
+	    firePit.setEffect(shadow);
+	    updateBoard();
+	    ArrayList<Color> order=new ArrayList<>();
+	    for(Player player:game.getPlayers()) {
+	    	order.add(colourToColor(player.getColour()));
+	    }
+	    controller.initColors(order);
 	    return scene;
 	}
 }

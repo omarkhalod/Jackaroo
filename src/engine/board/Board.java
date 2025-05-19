@@ -92,12 +92,7 @@ public class Board implements BoardManager {
         return -1;
     }
     public int publicBasePosition(Colour colour) {
-    	for(int i = 0; i < safeZones.size(); i++) {
-            if(safeZones.get(i).getColour() == colour)
-                return i * 25;
-        }
-        
-        return -1;
+    	return getBasePosition(colour);
     }
 
     private int getEntryPosition(Colour colour) {

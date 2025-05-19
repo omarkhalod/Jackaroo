@@ -39,13 +39,14 @@ public class JackrooLauncher extends Application{
 		Parent landingRoot = createLandingRoot();
 		
         landingScene = new Scene(landingRoot, BG_WIDTH, BG_HEIGHT);
-
         //Make video fill on resize
         landingScene.widthProperty().addListener((obs, oldW, newW) ->
             mediaView.setFitWidth(newW.doubleValue()));
         landingScene.heightProperty().addListener((obs, oldH, newH) ->
             mediaView.setFitHeight(newH.doubleValue()));
-        
+        landingScene.getStylesheets().add(
+                getClass().getResource("app.css").toExternalForm()
+            );
         stage.setTitle("Jackaroo Launcher");
         stage.centerOnScreen();
         stage.setFullScreen(true);
