@@ -20,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -409,6 +411,17 @@ public class Main {
 	    playerTurns.setMinSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
 	    playerTurns.setMaxSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
 	    root.getChildren().add(playerTurns);
+	    scene.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode() == KeyCode.Q) {
+                MarbleController.fieldMarble(game,game.getPlayers().get(0), launcher);
+            }else if(event.getCode() == KeyCode.W) {
+            	MarbleController.fieldMarble(game,game.getPlayers().get(1), launcher);
+            }else if(event.getCode() == KeyCode.E) {
+            	MarbleController.fieldMarble(game,game.getPlayers().get(2), launcher);
+            }else if(event.getCode() == KeyCode.R) {
+            	MarbleController.fieldMarble(game,game.getPlayers().get(3), launcher);
+            }
+        });
 	    return scene;
 	}
 }
