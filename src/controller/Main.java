@@ -447,7 +447,7 @@ public class Main {
 	    playerTurns.setMinSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
 	    playerTurns.setMaxSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
 	    root.getChildren().add(playerTurns);
-	    scene.setOnKeyPressed((KeyEvent event) -> {
+	    scene.setOnKeyPressed( event -> {
             if (event.getCode() == KeyCode.Q) {
                 MarbleController.fieldMarble(game,game.getPlayers().get(0), launcher);
             }else if(event.getCode() == KeyCode.W) {
