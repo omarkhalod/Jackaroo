@@ -70,6 +70,7 @@ public class Main {
     private static Label currPlayerTurn=new Label();
     private static Label nextPlayerTurn=new Label();
     private static StackPane root;
+    
     public static void showTrapFlash() {
         ImageView flash = new ImageView("/view/resources/TRAP.png");
         flash.setFitWidth(200);
@@ -146,49 +147,57 @@ public class Main {
         exitButton.setStyle("-fx-background-color: gray;");
 
         
-        Button replayButton = new Button("Play a new game");
-        replayButton.setDisable(true);
-    	replayButton.setOpacity(0);
-        replayButton.setOnAction(e -> {
-            JackrooLauncher jackrooLauncher = new JackrooLauncher();
-            jackrooLauncher.restartGame();
-        });
+//        Button replayButton = new Button("Play a new game");
+//        replayButton.setDisable(true);
+//    	replayButton.setOpacity(0);
+//        replayButton.setOnAction(e -> {
+////            JackrooLauncher jackrooLauncher = new JackrooLauncher();
+//        	JackrooLauncher.getInstance().showLandingScreen();
+//        });
+//        
+//        
+//        
+//        replayButton.setFont(new Font("Arial", 24));
+//        replayButton.setStyle("-fx-text-fill: white;");
+//        replayButton.setStyle("-fx-background-color: gray;");
         
-        
-        
-        replayButton.setFont(new Font("Arial", 24));
-        replayButton.setStyle("-fx-text-fill: white;");
-        replayButton.setStyle("-fx-background-color: gray;");
-        
-        VBox controls = new VBox(15, titleLabel, exitButton, replayButton);
+//        VBox controls = new VBox(15, titleLabel, exitButton, replayButton);
+        VBox controls = new VBox(15, titleLabel, exitButton);
         controls.setAlignment(Pos.CENTER);
         controls.getStyleClass().add("controls-box");
         
         //link to css file
         titleLabel.getStyleClass().add("title-label");
         exitButton.getStyleClass().add("start-button");
-        replayButton.getStyleClass().add("start-button");
+//        replayButton.getStyleClass().add("start-button");
 
         
         FadeTransition fadeIn2 = new FadeTransition(Duration.seconds(1.2), exitButton);
         fadeIn2.setFromValue(0);
         fadeIn2.setToValue(1);
         
-        FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(1.2), replayButton);
-        fadeIn1.setFromValue(0);
-        fadeIn1.setToValue(1);
-        
+//        FadeTransition fadeIn1 = new FadeTransition(Duration.seconds(1.2), replayButton);
+//        fadeIn1.setFromValue(0);
+//        fadeIn1.setToValue(1);
+//        
         
         
         // when typing finishes, enable inputs *and* run fade:
         typer.setOnFinished(e -> {
             exitButton.setDisable(false);
-            replayButton.setDisable(false);
+//            replayButton.setDisable(false);
             fadeIn2.play();
-            fadeIn1.play();
+//            fadeIn1.play();
         });
         
-        return new StackPane(mediaView, controls);
+        StackPane root = new StackPane();
+        root.getChildren().addAll(mediaView, controls);
+        mediaView.fitWidthProperty().bind(root.widthProperty());
+        mediaView.fitHeightProperty().bind(root.heightProperty());
+        
+        return root;
+
+        
 		
 	}
         
@@ -207,6 +216,9 @@ public class Main {
     	return new Scene(createWinningRoot());
 	}
     
+   public static void reset(){
+	   game = null;
+   }
     
 	public static void play(StackPane root) {
 		endGame();
@@ -438,7 +450,8 @@ public class Main {
 		return Color.YELLOW;
 	}
 	public Scene start(String playerName) throws Exception {
-	    root = new StackPane();
+	    game = new Game(playerName);
+		root = new StackPane();
 	    firePit.setPreserveRatio(true);
 	    firePit.setFitWidth(100);
         firePit.setFitHeight(139);
@@ -556,6 +569,6 @@ public class Main {
             	MarbleController.fieldMarble(game,game.getPlayers().get(3), launcher);
             }
         });
-	    return scene; // to test winning screen just replace "scene" with "switchToWin()"
+	    return switchToWin(); // to test winning screen just replace "scene" with "switchToWin()"
 	}
 }

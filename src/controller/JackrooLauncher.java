@@ -35,6 +35,22 @@ public class JackrooLauncher extends Application{
     private static final String VIDEO_PATH =JackrooLauncher.class.getClass().getResource("/view/resources/gameplay/gameplay.mp4").toExternalForm();
     private MediaView mediaView;
     
+    
+    
+    
+    
+    private static JackrooLauncher instance;     // <-- NEW
+
+    public JackrooLauncher() {                   // <-- NEW
+        instance = this;
+    }
+
+    public static JackrooLauncher getInstance() {// <-- NEW
+        return instance;
+    }
+    
+    
+    
     @Override
     public void start(Stage stage) throws Exception {
         
@@ -59,13 +75,16 @@ public class JackrooLauncher extends Application{
         stage.show();
     }
 
-    public void restartGame() {
+    public void showLandingScreen() {
+    	
+    	Main.reset();
+        landingScene.setRoot(createLandingRoot()); // restart animation + inputs
         primaryStage.setScene(landingScene);
-        primaryStage.centerOnScreen();
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jackaroo Launcher");
-        primaryStage.show();
     }
+
+
     
     
     private Parent createLandingRoot() {
