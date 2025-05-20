@@ -92,25 +92,12 @@ public class Main {
         
 //    -----------------------------------------------------------------------------
     
-    
-    public static void endGame(){
-    	if(game.checkWin()!=null){
-    		switchToWin();
-    	}
-    }
-    
-    
-    
-   public static Scene switchToWin() {
-    	return new Scene(WinningScene.createWinningRoot(game));
-	}
-    
    public static void reset(){
 	   game = null;
    }
     
 	public static void play(StackPane root) {
-		endGame();
+		launcher.endGame(game);
 		if(game.getPlayers().get(0).getSelectedCard().getName().equals("Seven")&&MarbleView.selectedMarbles.size()==2) {
 			try {
 				game.editSplitDistance(launcher.seven());
@@ -156,6 +143,7 @@ public class Main {
 	    pause.play();
 	}
 	public static void playCPU(StackPane root,int i){
+		launcher.endGame(game);
 		controller.highlightCurrentPlayer(i%4);
 		currPlayerTurn.setText("Current Player: "+game.getCurrentPlayer().getName());
 		nextPlayerTurn.setText("Next player: "+game.getPlayers().get(MarbleController.id(game.getNextPlayerColour(), game)).getName());

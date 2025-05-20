@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
+import engine.Game;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -276,7 +277,21 @@ public class JackrooLauncher extends Application{
 	    dialog.showAndWait();
 	}
 	
+	public void endGame(Game game){
+    	if(game.checkWin()!= null){
+    		switchToWin(game);
+    	}
+    }
 	
+	public void switchToWin(Game game) {
+	    	Scene winningScene = new Scene(WinningScene.createWinningRoot(game));
+	    	
+	    	this.primaryStage.setScene(winningScene);
+			this.primaryStage.centerOnScreen();
+			this.primaryStage.setFullScreen(true);
+			this.primaryStage.setTitle("GG!");
+			this.primaryStage.show();
+		}
 	
 	
 	public static void main(String[] args) {
