@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -32,13 +33,9 @@ public class JackrooLauncher extends Application{
     private static final Duration STARTING_DELAY = Duration.seconds(1);
     private static final int BG_WIDTH = 1800;
     private static final int BG_HEIGHT = 900;
-    private static final String VIDEO_PATH =JackrooLauncher.class.getClass().getResource("/view/resources/gameplay/gameplay.mp4").toExternalForm();
+    private static final String VIDEO_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("gameplay").resolve("gameplay.mp4").toUri().toString();
     private MediaView mediaView;
-    
-    
-    
-    
-    
+      
     private static JackrooLauncher instance;     // <-- NEW
 
     public JackrooLauncher() {                   // <-- NEW
@@ -53,7 +50,6 @@ public class JackrooLauncher extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
-        
 		this.primaryStage = stage;
 		Parent landingRoot = createLandingRoot();
 		
@@ -66,6 +62,7 @@ public class JackrooLauncher extends Application{
         landingScene.getStylesheets().add(
                 getClass().getResource("app.css").toExternalForm()
             );
+        
         stage.setTitle("Jackaroo Launcher");
         stage.centerOnScreen();
         stage.setFullScreen(true);
@@ -74,17 +71,6 @@ public class JackrooLauncher extends Application{
         stage.setMinHeight(700);
         stage.show();
     }
-
-    public void showLandingScreen() {
-    	
-    	Main.reset();
-        landingScene.setRoot(createLandingRoot()); // restart animation + inputs
-        primaryStage.setScene(landingScene);
-        primaryStage.setFullScreen(true);
-        primaryStage.setTitle("Jackaroo Launcher");
-    }
-
-
     
     
     private Parent createLandingRoot() {
@@ -135,10 +121,7 @@ public class JackrooLauncher extends Application{
         startButton.setOnAction(e -> {
             String playerName = nameField.getText().trim();
             if (playerName.isEmpty()) {
-//            	still does not work for some reason
-//                new Alert(Alert.AlertType.WARNING,
-//                          "Please enter a name before starting.",
-//                          ButtonType.OK).showAndWait();
+            	popUp("Input a name first plz");
             } else {
                 System.out.println("Starting game for player: " + playerName);
                 switchToGame(playerName);
@@ -191,11 +174,12 @@ public class JackrooLauncher extends Application{
     
     private void switchToGame(String playerName) {
 		Main x = new Main();
-		x.launcher=this;
+		x.launcher = this;
+		
 		try {
 			this.gameScene = x.start(playerName);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			System.out.println("this aint working here 2");
 			e.printStackTrace();
 		}
 		
@@ -208,13 +192,7 @@ public class JackrooLauncher extends Application{
 		
 	}
     
-    
-    
-    
-    
-    
-    
-    
+
     public int seven() {
     	return getSplitDistance(primaryStage);
     }
@@ -242,6 +220,8 @@ public class JackrooLauncher extends Application{
         alert.initModality(Modality.WINDOW_MODAL);
         alert.showAndWait();
 	}
+	
+	
 	
 	
 	public static void main(String[] args) {
