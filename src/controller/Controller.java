@@ -30,7 +30,7 @@ public class Controller implements Initializable{
 	@FXML private ImageView p1m0, p1m1, p1m2, p1m3;
 	@FXML private ImageView p2m0, p2m1, p2m2, p2m3;
 	@FXML private ImageView p3m0, p3m1, p3m2, p3m3;
-	@FXML private Label name;
+	@FXML private Label name,cepu1,cepu2,cepu3;
 	@FXML private ImageView omori,kel,aubrey,hero;
 	@FXML private ImageView b0,b1,b2,b3;
 	@FXML private ImageView boardImage,backgroundImage;
@@ -58,7 +58,26 @@ public class Controller implements Initializable{
 	            });
 	        }
 	    }
-		
+		name.setStyle(
+			    "-fx-text-fill: white;" +
+			    "-fx-font-weight: bold;" +
+			    "-fx-effect: dropshadow(one-pass-box, black, 1, 0.0, 0, 0);"
+			);
+		cepu1.setStyle(
+			    "-fx-text-fill: white;" +
+			    "-fx-font-weight: bold;" +
+			    "-fx-effect: dropshadow(one-pass-box, black, 1, 0.0, 0, 0);"
+			);
+		cepu2.setStyle(
+			    "-fx-text-fill: white;" +
+			    "-fx-font-weight: bold;" +
+			    "-fx-effect: dropshadow(one-pass-box, black, 1, 0.0, 0, 0);"
+			);
+		cepu3.setStyle(
+			    "-fx-text-fill: white;" +
+			    "-fx-font-weight: bold;" +
+			    "-fx-effect: dropshadow(one-pass-box, black, 1, 0.0, 0, 0);"
+			);
 	}
 
 	 public void setName(String name) {

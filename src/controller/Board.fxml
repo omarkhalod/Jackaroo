@@ -113,17 +113,17 @@
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label text="CPU 3" StackPane.alignment="TOP_RIGHT">
+                  <Label fx:id="cepu3" text="CPU 3" StackPane.alignment="TOP_RIGHT">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label text="CPU 2" StackPane.alignment="TOP_LEFT">
+                  <Label fx:id="cepu2" text="CPU 2" StackPane.alignment="TOP_LEFT">
                      <font>
                         <Font size="27.0" />
                      </font>
                   </Label>
-                  <Label text="CPU 1" StackPane.alignment="BOTTOM_LEFT">
+                  <Label fx:id="cepu1" text="CPU 1" StackPane.alignment="BOTTOM_LEFT">
                      <font>
                         <Font size="27.0" />
                      </font>
