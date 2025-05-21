@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -72,7 +74,8 @@ public class Main {
     private static Label nextPlayerTurn=new Label();
     private static StackPane root;
     private static String TRAP_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("TRAP.png").toUri().toString();
-    
+    private boolean isPlaying = true;
+
     public static void showTrapFlash() {
         ImageView flash = new ImageView(TRAP_PATH);
         flash.setFitWidth(200);
@@ -114,7 +117,6 @@ public class Main {
 			game.playPlayerTurn();
 		} catch (GameException e) {
 			launcher.popUp(e.getMessage());
-			e.printStackTrace();
 			if(game.getCurrentPlayer().getSelectedCard()!=null) {
 				game.endPlayerTurn();
 				updateBoard();
@@ -194,7 +196,6 @@ public class Main {
 			game.getPlayers().get(i).play();
 		} catch (GameException e) {
 			launcher.popUp(e.getMessage());
-			e.printStackTrace();
 		}
 		game.endPlayerTurn();
 		updateBoard();
@@ -371,8 +372,12 @@ public class Main {
 	    root.getChildren().add(handCPU3);
 	    StackPane.setAlignment(handCPU3, Pos.CENTER_RIGHT);
 
-	    Button btnPlay     = new Button("Play");
-	    Button btnDeselect = new Button("Deselect All");
+	    Button btnPlay     = new Button();
+	    Button btnDeselect = new Button();
+	    ImageView des = new ImageView("/view/resources/gameplay/DESELECT ALL.png");
+	    ImageView pla = new ImageView("/view/resources/gameplay/play.png");
+	    ImageView mus = new ImageView("/view/resources/gameplay/TOGGLE.png");
+	    
 	    btnPlay.setOnAction(e -> { play(root); });
 	    btnDeselect.setOnAction(e -> deselect());
 	    btnPlay.setPickOnBounds(false);
@@ -451,6 +456,69 @@ public class Main {
             }
         });
 	    controller.setIcons(order);
+	    Media media = new Media(getClass().getResource("/view/resources/gameplay/music.mp3").toExternalForm());
+	    MediaPlayer mediaPlayer = new MediaPlayer(media);
+	    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+	    mediaPlayer.play();
+	    Button toggleButton = new Button();
+        toggleButton.setOnAction(e -> {
+            if (isPlaying) {
+                mediaPlayer.pause();
+            } else {
+                mediaPlayer.play();
+            }
+            isPlaying = !isPlaying;
+        });
+        btnPlay.setStyle(
+        	    "-fx-background-color: transparent;" +
+        	    "-fx-padding: 0;" +
+        	    "-fx-border-color: transparent;"
+        	);
+        btnDeselect.setStyle(
+        	    "-fx-background-color: transparent;" +
+        	    "-fx-padding: 0;" +
+        	    "-fx-border-color: transparent;"
+        	);
+        toggleButton.setStyle(
+        	    "-fx-background-color: transparent;" +
+        	    	    "-fx-padding: 0;" +
+        	    	    "-fx-border-color: transparent;"
+        	    	);
+        btnPlay.setGraphic(pla);
+        btnDeselect.setGraphic(des);
+        toggleButton.setGraphic(mus);
+        btnPlay.setOnMouseEntered(e -> {
+            btnPlay.setScaleX(1.05);
+            btnPlay.setScaleY(1.05);
+            btnPlay.setCursor(Cursor.HAND);
+        });
+
+        btnPlay.setOnMouseExited(e -> {
+            btnPlay.setScaleX(1);
+            btnPlay.setScaleY(1);
+        });
+        btnDeselect.setOnMouseEntered(e -> {
+        	btnDeselect.setScaleX(1.05);
+        	btnDeselect.setScaleY(1.05);
+        	btnDeselect.setCursor(Cursor.HAND);
+        });
+
+        btnDeselect.setOnMouseExited(e -> {
+        	btnDeselect.setScaleX(1);
+        	btnDeselect.setScaleY(1);
+        });
+        toggleButton.setOnMouseEntered(e -> {
+        	toggleButton.setScaleX(1.05);
+        	toggleButton.setScaleY(1.05);
+        	toggleButton.setCursor(Cursor.HAND);
+        });
+
+        toggleButton.setOnMouseExited(e -> {
+        	toggleButton.setScaleX(1);
+        	toggleButton.setScaleY(1);
+        });
+        root.getChildren().add(toggleButton);
+        StackPane.setAlignment(toggleButton,Pos.TOP_LEFT);
 	    return scene; // to test winning screen just replace "scene" with "switchToWin()"
 	}
 	
