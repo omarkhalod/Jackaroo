@@ -178,7 +178,6 @@ public class JackrooLauncher extends Application{
     private void switchToGame(String playerName) {
 		Main x = new Main();
 		x.launcher = this;
-		
 		try {
 			this.gameScene = x.start(playerName);
 		} catch (Exception e) {
@@ -191,8 +190,6 @@ public class JackrooLauncher extends Application{
 		this.primaryStage.setFullScreen(true);
 		this.primaryStage.setTitle("Jackaroo – Let’s Play!");
 		this.primaryStage.show();
-			
-		
 	}
     
 
@@ -200,34 +197,23 @@ public class JackrooLauncher extends Application{
     	return getSplitDistance(primaryStage);
     }
     public int getSplitDistance(Stage owner) {
-        // Prepare the dialog Stage
         Stage dialog = new Stage();
         dialog.initOwner(owner);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setTitle("Pick a Number");
-
-        // Header
         Label header = new Label("Choose the split distance");
         header.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
-
-        // Combo box with your choices
         ObservableList<Integer> choices = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6);
         ComboBox<Integer> combo = new ComboBox<>(choices);
         combo.getSelectionModel().selectFirst();
-
-        // OK and Cancel buttons
         Button ok = new Button("OK");
         Button cancel = new Button("Cancel");
         HBox buttons = new HBox(10, ok, cancel);
         buttons.setAlignment(Pos.CENTER);
-
-        // Layout everything
         VBox layout = new VBox(15, header, new Label("Number:"), combo, buttons);
         layout.setPadding(new Insets(20));
         layout.setAlignment(Pos.CENTER);
-
-        // Wire up button actions
-        final int[] result = { CardController.splitDistance }; // fallback
+        final int[] result = { CardController.splitDistance };
         ok.setDefaultButton(true);
         ok.setOnAction(e -> {
             result[0] = combo.getValue();
@@ -235,26 +221,18 @@ public class JackrooLauncher extends Application{
         });
         cancel.setCancelButton(true);
         cancel.setOnAction(e -> {
-            // leave result as-is
             dialog.close();
         });
-
-        // Show dialog and wait
         dialog.setScene(new Scene(layout));
         dialog.showAndWait();
-
-        // Store and return
         CardController.splitDistance = result[0];
         return CardController.splitDistance;
     }
 	public void popUp(String message) {
-	    // 1) Create a new, unimpressive Stage to act as your dialog
 	    Stage dialog = new Stage();
 	    dialog.setTitle("Error");
-	    dialog.initOwner(primaryStage);                          // block only the primary stage
-	    dialog.initModality(Modality.WINDOW_MODAL);              // WINDOW_MODAL = only owner is blocked
-
-	    // 2) Build your “content”
+	    dialog.initOwner(primaryStage);                         
+	    dialog.initModality(Modality.WINDOW_MODAL);            
 	    Label headerLabel = new Label("An exception occurred");
 	    headerLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
 
@@ -268,12 +246,8 @@ public class JackrooLauncher extends Application{
 	    VBox layout = new VBox(10, headerLabel, messageLabel, okButton);
 	    layout.setPadding(new Insets(15));
 	    layout.setAlignment(Pos.CENTER);
-
-	    // 3) Put it all in a Scene and show it
 	    Scene scene = new Scene(layout);
 	    dialog.setScene(scene);
-
-	    // 4) Show and wait for the user to close
 	    dialog.showAndWait();
 	}
 	

@@ -55,6 +55,8 @@ public class MarbleView {
 				});
 				((StackPane) marbleView.getParent()).getChildren().remove(marbleView);
 				BoardController.overlay.getChildren().add(marbleView);
+				marbleView.setFitHeight(24);
+				marbleView.setFitWidth(24);
 				j++;
 			}
 			i++;

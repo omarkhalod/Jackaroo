@@ -8,16 +8,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1165.0" prefWidth="2297.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
       <StackPane layoutX="408.8" layoutY="166.4" prefHeight="871.0" prefWidth="1376.0" translateX="50.0" translateY="-20.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="409.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="166.0">
          <children>
+            <ImageView fitHeight="660.0" fitWidth="969.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/download.png" />
+               </image>
+            </ImageView>
             <StackPane alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="154.0" StackPane.alignment="BOTTOM_RIGHT">
                <children>
                   <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_RIGHT">
@@ -720,22 +722,6 @@
                                     </StackPane>
                                  </children>
                               </Group>
-                           </children>
-                        </Group>
-                        <Group translateX="237.0" translateY="190.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="150.0" strokeType="INSIDE" strokeWidth="5.0" width="100.0">
-                                 <stroke>
-                                    <LinearGradient endX="0.8446601941747574" endY="0.6699029126213593" startX="0.674757281553398" startY="0.47572815533980584">
-                                       <stops>
-                                          <Stop color="#ff6a00e5" />
-                                          <Stop color="#ff8000" offset="0.3966325660699062" />
-                                          <Stop color="#ffca00" offset="1.0" />
-                                       </stops>
-                                    </LinearGradient>
-                                 </stroke>
-                              </Rectangle>
-                              <Label layoutX="27.0" layoutY="65.0" text="Fire Pit" />
                            </children>
                         </Group>
                         <Group layoutX="145.0" layoutY="35.0">

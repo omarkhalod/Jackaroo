@@ -173,7 +173,7 @@ public class BoardController {
 		homeZonePositions.get(3).add(new Point2D(x+18,y-18));
 		homeZonePositions.get(3).add(new Point2D(x+36,y));
 		homeZonePositions.get(3).add(new Point2D(x+18,y+18));
-		Point2D offset=new Point2D(-387,33);
+		Point2D offset=new Point2D(-389,31);
 		for(int i=0;i<100;i++) {
 			trackPositions.set(i,trackPositions.get(i).add(offset));
 		}
