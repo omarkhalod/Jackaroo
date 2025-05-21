@@ -37,12 +37,8 @@ public class MarbleController {
 		try {
 			game.getBoard().sendToBase(player.getOneMarble());
 		} catch (CannotFieldException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return;
 		} catch (IllegalDestroyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return;
 		}
 		Main.updateBoard();

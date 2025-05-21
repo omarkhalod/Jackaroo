@@ -30,8 +30,9 @@ public class Controller implements Initializable{
 	@FXML private ImageView p1m0, p1m1, p1m2, p1m3;
 	@FXML private ImageView p2m0, p2m1, p2m2, p2m3;
 	@FXML private ImageView p3m0, p3m1, p3m2, p3m3;
-	@FXML private Circle humanCircle, cpu1Circle, cpu2Circle, cpu3Circle;
 	@FXML private Label name;
+	@FXML private ImageView omori,kel,aubrey,hero;
+	@FXML private ImageView b0,b1,b2,b3;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -58,32 +59,33 @@ public class Controller implements Initializable{
 	    }
 		
 	}
-	 public void highlightCurrentPlayer(int playerIndex) { 
-		humanCircle.setStroke(Color.BLACK);
-		cpu1Circle.setStroke(Color.BLACK);
-		cpu2Circle.setStroke(Color.BLACK);
-		cpu3Circle.setStroke(Color.BLACK);
-       
-		// Highlight current player
-		switch(playerIndex) {
-			case 0: humanCircle.setStroke(Color.GOLD); break;
-			case 1: cpu3Circle.setStroke(Color.GOLD); break;
-			case 2: cpu2Circle.setStroke(Color.GOLD); break;
-			case 3: cpu1Circle.setStroke(Color.GOLD); break;
-		}
-	 }
+
 	 public void setName(String name) {
 		 this.name.setText(name);
 	 }
-	 public void initColors(ArrayList<Color> order) {
-		 humanCircle.setFill(order.get(0));
-			humanCircle.setStrokeWidth(5);
-			humanCircle.setStroke(Color.GOLD);
-			cpu3Circle.setFill(order.get(1));
-			cpu3Circle.setStrokeWidth(5);
-			cpu2Circle.setFill(order.get(2));
-			cpu2Circle.setStrokeWidth(5);
-			cpu1Circle.setFill(order.get(3));
-			cpu1Circle.setStrokeWidth(5);
+	 public void setIcons(ArrayList<Color> order) {
+		 Image omo=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/omori.gif"));
+		 Image aub=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/aubrey.gif"));
+		 Image kel=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/kel.gif"));
+		 Image her=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/hero.gif"));
+		 Image blue=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/border-Photoroom.png"));
+		 Image red=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/BORDER RED.png"));
+		 Image green=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/border green.png"));
+		 Image yellow=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/border yellow.png"));
+		 omori.setImage(omo);
+		 this.kel.setImage(kel);
+		 aubrey.setImage(aub);
+		 hero.setImage(her);
+		 ImageView[] tst= {b0,b1,b2,b3};
+		 for(int i=0;i<4;i++) {
+			 if(order.get(i)==Color.RED) {
+				 tst[i].setImage(red);
+			 }else if(order.get(i)==Color.BLUE) {
+				 tst[i].setImage(blue);
+			 }else if(order.get(i)==Color.GREEN) {
+				 tst[i].setImage(green);
+			 }else
+				 tst[i].setImage(yellow);
+		 }
 	 }
 }

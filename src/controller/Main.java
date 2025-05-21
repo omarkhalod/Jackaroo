@@ -150,7 +150,6 @@ public class Main {
 			launcher.endGame(game);
 			return;
 		}
-		controller.highlightCurrentPlayer(i%4);
 		currPlayerTurn.setText("Current Player: "+game.getCurrentPlayer().getName());
 		nextPlayerTurn.setText("Next player: "+game.getPlayers().get(MarbleController.id(game.getNextPlayerColour(), game)).getName());
 		if(i==4) {
@@ -418,7 +417,6 @@ public class Main {
 	    for(Player player:game.getPlayers()) {
 	    	order.add(colourToColor(player.getColour()));
 	    }
-	    controller.initColors(order);
 	    currPlayerTurn.setText("Current player: "+playerName);
 	    nextPlayerTurn.setText("Next Player: CPU 1");
 	    StackPane.setAlignment(playerTurns,Pos.BOTTOM_RIGHT);
@@ -452,6 +450,7 @@ public class Main {
             	MarbleController.fieldMarble(game,game.getPlayers().get(3), launcher);
             }
         });
+	    controller.setIcons(order);
 	    return scene; // to test winning screen just replace "scene" with "switchToWin()"
 	}
 	
