@@ -16,12 +16,12 @@
    <children>
       <StackPane layoutX="408.8" layoutY="166.4" prefHeight="871.0" prefWidth="1376.0" translateX="50.0" translateY="-20.0" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="409.0" AnchorPane.rightAnchor="512.0" AnchorPane.topAnchor="166.0">
          <children>
-            <ImageView fitHeight="1186.0" fitWidth="2799.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="boardImage" fitHeight="1186.0" fitWidth="2799.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Downloads/background.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="678.0" fitWidth="682.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="backgroundImage" fitHeight="678.0" fitWidth="682.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Downloads/download.png" />
                </image>

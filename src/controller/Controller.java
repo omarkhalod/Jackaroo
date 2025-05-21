@@ -33,6 +33,7 @@ public class Controller implements Initializable{
 	@FXML private Label name;
 	@FXML private ImageView omori,kel,aubrey,hero;
 	@FXML private ImageView b0,b1,b2,b3;
+	@FXML private ImageView boardImage,backgroundImage;
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -72,10 +73,14 @@ public class Controller implements Initializable{
 		 Image red=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/BORDER RED.png"));
 		 Image green=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/border green.png"));
 		 Image yellow=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/border yellow.png"));
+		 Image back=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/background.png"));
+		 Image boar=new Image(MarbleView.class.getResourceAsStream("/view/resources/gameplay/download.png"));
 		 omori.setImage(omo);
 		 this.kel.setImage(kel);
 		 aubrey.setImage(aub);
 		 hero.setImage(her);
+		 backgroundImage.setImage(boar);
+		 boardImage.setImage(back);
 		 ImageView[] tst= {b0,b1,b2,b3};
 		 for(int i=0;i<4;i++) {
 			 if(order.get(i)==Color.RED) {
