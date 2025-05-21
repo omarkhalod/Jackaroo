@@ -19,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.media.*;
 import javafx.stage.Modality;
@@ -31,13 +32,12 @@ public class JackrooLauncher extends Application{
 	private Scene landingScene;
 	private Scene gameScene;
 	
-    private static final String TITLE_TEXT = "Jackroo";
+    private static final String TITLE_TEXT = "Jackaroo";
     private static final Duration CHAR_DELAY = Duration.millis(150);
     private static final Duration STARTING_DELAY = Duration.seconds(1);
     private static final int BG_WIDTH = 1800;
     private static final int BG_HEIGHT = 900;
-    private static final String VIDEO_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("gameplay").resolve("gameplay.mp4").toUri().toString();
-    private MediaView mediaView;
+    private ImageView mediaView;
       
     private static JackrooLauncher instance;     // <-- NEW
 
@@ -77,19 +77,11 @@ public class JackrooLauncher extends Application{
     
     
     private Parent createLandingRoot() {
-    	// importing video
-        Media media = new Media(VIDEO_PATH);
-        MediaPlayer player = new MediaPlayer(media);
         
-        //video play forever
-        player.setCycleCount(MediaPlayer.INDEFINITE);
-        player.setAutoPlay(true);
-        
-        //so we can see the video and we remove the ratio so it can resize freely 
-        mediaView = new MediaView(player);
+        mediaView = new ImageView("/view/resources/gameplay/start.png");
         mediaView.setPreserveRatio(false);
-        mediaView.setFitWidth(BG_WIDTH);
-        mediaView.setFitHeight(BG_HEIGHT);
+        mediaView.setFitWidth(2560);
+        mediaView.setFitHeight(1080);
 
         // Typing effect title (maybe add diffrent types of timelines)
         Label titleLabel = new Label();
@@ -169,8 +161,10 @@ public class JackrooLauncher extends Application{
             startButton.setDisable(false);
             fadeIn2.play();
         });
-        
-        return new StackPane(mediaView, controls);
+        Pane xd=new Pane();
+        xd.setMaxSize(Region.USE_PREF_SIZE,Region.USE_PREF_SIZE);
+        xd.getChildren().add(mediaView);
+        return new StackPane(xd, controls);
 		
 	}
     

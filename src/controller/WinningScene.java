@@ -26,7 +26,7 @@ public class WinningScene {
     private static final Duration STARTING_DELAY = Duration.seconds(1);
     private static final int BG_WIDTH = 1800;
     private static final int BG_HEIGHT = 900;
-    private static final String VIDEO_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("gameplay").resolve("onepiece.mp4").toUri().toString();
+    private static final String VIDEO_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("gameplay").resolve("confetti.mp4").toUri().toString();
     private static MediaView mediaView;
     
     
@@ -37,7 +37,6 @@ public class WinningScene {
     	// importing video
         Media media = new Media(VIDEO_PATH);
         MediaPlayer player = new MediaPlayer(media);
-        ImageView chopper=new ImageView("/view/resources/gameplay/raf,360x360,075,t,fafafa_ca443f4786.png");
         //video play forever
         player.setCycleCount(MediaPlayer.INDEFINITE);
         player.setAutoPlay(true);
@@ -128,9 +127,6 @@ public class WinningScene {
         root.getChildren().add(mediaView);
         mediaView.fitWidthProperty().bind(root.widthProperty());
         mediaView.fitHeightProperty().bind(root.heightProperty());
-        root.getChildren().add(chopper);
-        chopper.fitWidthProperty().bind(root.widthProperty());
-        chopper.fitHeightProperty().bind(root.heightProperty());
         root.getChildren().add(controls);
         return root;
 
