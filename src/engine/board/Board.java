@@ -11,9 +11,15 @@ import exception.IllegalDestroyException;
 import exception.IllegalMovementException;
 import exception.IllegalSwapException;
 import exception.InvalidMarbleException;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import model.Colour;
 import model.player.Marble;
 import view.CardView;
+import view.MarbleView;
 
 @SuppressWarnings("unused")
 public class Board implements BoardManager {
@@ -216,15 +222,37 @@ public class Board implements BoardManager {
     	Cell targetCell = fullPath.get(fullPath.size()-1);
     	
     	currentCell.setMarble(null);
+		SequentialTransition seq = new SequentialTransition();
+    	double x=BoardController.positions.get(fullPath.get(0)).getX();
+		double y=BoardController.positions.get(fullPath.get(0)).getY();
+		Main.time=0;
+        for(Cell cell : fullPath) {
+        	ImageView marbleView=MarbleView.mp.get(marble);
+    		double x0=BoardController.positions.get(cell).getX();
+    		double y0=BoardController.positions.get(cell).getY();
+    		TranslateTransition tt = new TranslateTransition(Duration.seconds(0.2),marbleView);
+    		Main.time+=0.2;
+    		tt.setByX(x0 - x);
+    		tt.setByY(y0 - y);
+    		tt.setOnFinished(e -> {
+    		    marbleView.setLayoutX(marbleView.getLayoutX() + marbleView.getTranslateX());
+    		    marbleView.setLayoutY(marbleView.getLayoutY() + marbleView.getTranslateY());
 
-        if (destroy) {
-            for(Cell cell : fullPath) {
-                if (cell.getMarble() != null) 
-                    destroyMarble(cell.getMarble());
-            }
+    		    // Reset the translate to 0
+    		    marbleView.setTranslateX(0);
+    		    marbleView.setTranslateY(0);
+    		});
+    		x=x0;
+    		y=y0;
+    		seq.getChildren().add(tt);
+    		PauseTransition pause=new PauseTransition(Duration.seconds(0.1));
+    		Main.time+=0.1;
+    		seq.getChildren().add(pause);
+            if (cell.getMarble() != null&&destroy) 
+                destroyMarble(cell.getMarble());
         }
         
-        else if (targetCell.getMarble() != null) 
+        if (targetCell.getMarble() != null&&!destroy) 
         	destroyMarble(targetCell.getMarble());   
         
         targetCell.setMarble(marble);
@@ -235,6 +263,7 @@ public class Board implements BoardManager {
             assignTrapCell();
             CardView.trap=true;
         }
+        seq.play();
 	}
     
     private void validateSwap(Marble marble_1, Marble marble_2) throws IllegalSwapException {

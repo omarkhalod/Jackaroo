@@ -79,8 +79,8 @@ public class JackrooLauncher extends Application{
         
         mediaView = new ImageView("/view/resources/gameplay/start.png");
         mediaView.setPreserveRatio(false);
-        mediaView.setFitWidth(2560);
-        mediaView.setFitHeight(1080);
+        mediaView.setFitWidth(BG_WIDTH);
+        mediaView.setFitHeight(BG_HEIGHT);
 
         // Typing effect title (maybe add diffrent types of timelines)
         Label titleLabel = new Label();

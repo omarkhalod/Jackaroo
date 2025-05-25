@@ -72,6 +72,7 @@ public class Main {
     private static Label nextPlayerTurn=new Label();
     private static StackPane root;
     private static String TRAP_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("TRAP.png").toUri().toString();
+    public static double time=0;
     private boolean isPlaying = true;
 
     public static void showTrapFlash() {
@@ -98,6 +99,7 @@ public class Main {
    }
     
 	public static void play(StackPane root) {
+		time=0;
 		if(game.checkWin()!=null) {
 			launcher.endGame(game);
 			return;
@@ -129,7 +131,14 @@ public class Main {
 			}
 			return;
 		}
-		
+		deselectCosmetic();
+		PauseTransition pause = new PauseTransition(Duration.seconds(time));
+	    pause.setOnFinished(evt -> {
+	        restPlay(root);
+	    });
+	    pause.play();
+	}
+	public static void restPlay(StackPane root) {
 		game.endPlayerTurn();
 		updateBoard();
 		deselect();
@@ -146,6 +155,7 @@ public class Main {
 	    pause.play();
 	}
 	public static void playCPU(StackPane root,int i){
+		time=0;
 		if(game.checkWin()!=null) {
 			launcher.endGame(game);
 			return;
@@ -195,6 +205,13 @@ public class Main {
 		} catch (GameException e) {
 			launcher.popUp(e.getMessage());
 		}
+		PauseTransition pause = new PauseTransition(Duration.seconds(time));
+	    pause.setOnFinished(evt -> {
+	        restPlayCPU(root,i);
+	    });
+	    pause.play();
+	}
+	public static void restPlayCPU(StackPane root,int i) {
 		game.endPlayerTurn();
 		updateBoard();
 		updateHands();
@@ -320,6 +337,28 @@ public class Main {
 	    	marble.setEffect(shadow);
 	    }
 	    MarbleView.selectedMarbles.clear();
+	}
+	public static void deselectCosmetic() {
+		Card temp=CardController.selected;
+        CardController.descLabel.setText("");
+        CardController.nameLabel.setText("");
+        CardController.suitLabel.setText("");
+        CardController.rankLabel.setText("");
+        if(temp!=null) {
+        	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), CardView.mp.get(temp));
+	    	scaleDown.setToX(1.0);
+	    	scaleDown.setToY(1.0);
+	    	scaleDown.playFromStart();
+        }
+	    ArrayList<ImageView> selected=MarbleView.selectedMarbles;
+	    DropShadow shadow=new DropShadow();
+	    for(ImageView marble:selected) {
+	    	ScaleTransition scaleDown = new ScaleTransition(Duration.millis(200), marble);
+	    	scaleDown.setToX(1.0);
+	    	scaleDown.setToY(1.0);
+	    	scaleDown.playFromStart();
+	    	marble.setEffect(shadow);
+	    }
 	}
 	public static Color colourToColor(Colour colour) {
 		if(colour==Colour.RED)
@@ -454,7 +493,8 @@ public class Main {
             }
         });
 	    controller.setIcons(order);
-	    Media media = new Media(getClass().getResource("/view/resources/gameplay/music.mp3").toExternalForm());
+	    String VIDEO_PATH = Paths.get(System.getProperty("user.dir")).resolve("src").resolve("view").resolve("resources").resolve("gameplay").resolve("music.mp3").toUri().toString();
+	    Media media = new Media(VIDEO_PATH);
 	    MediaPlayer mediaPlayer = new MediaPlayer(media);
 	    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
 	    mediaPlayer.play();
