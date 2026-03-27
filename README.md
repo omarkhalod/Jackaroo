@@ -1,10 +1,7 @@
 <div align="center">
-  <img src="assets/logo.png" alt="OMORI Jackaroo Logo" width="400">
-
+<img width="2816" height="1536" alt="Gemini_Generated_Image_631i3m631i3m631i" src="https://github.com/user-attachments/assets/d82f1592-fde8-44ca-a71e-c740c47ad38d" />
   # ♠️♥️ OMORI Jackaroo ♣️♦️
 </div>
-
-> **Disclaimer:** This is an unofficial, fan-made project. OMORI and all related characters, music, and assets belong to OMOCAT. Please support the official release!
 
 Welcome to WHITE SPACE. You have been playing Jackaroo here for as long as you can remember. 
 
@@ -27,9 +24,7 @@ Welcome to WHITE SPACE. You have been playing Jackaroo here for as long as you c
 Here is a glimpse into the game!
 
 <div align="center">
-  <img src="assets/gameplay.gif" alt="Gameplay GIF" width="600">
-  <br>
-  <em>(Replace the link above with your actual gameplay GIF)</em>
+https://github.com/user-attachments/assets/53844b26-2559-4152-8826-f51d5d0d3c3c
 </div>
 
 ### Screenshots
