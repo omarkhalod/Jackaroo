@@ -6,8 +6,13 @@
 Before you begin, make sure you have:  
 - ✅ **Git** installed ([Download Git](https://git-scm.com/downloads))  
 - ✅ **Eclipse IDE** installed ([Download Eclipse](https://www.eclipse.org/downloads/))  
-- ✅ **Access to the repository** (You must be added as a collaborator)  
-- ✅ **GitHub Authentication**: If the repository is private and you have **2FA enabled**, you must use **SSH or a Personal Access Token (PAT)** instead of a password.
+- ✅ **Access to the repository** (You must be added as a collaborator) 
+
+https://github.com/user-attachments/assets/e17fcdb1-5a05-4e7f-8b62-9692f2ab2114
+
+ 
+- ✅ **GitHub Authentication**: If the repository is private and you!)
+ have **2FA enabled**, you must use **SSH or a Personal Access Token (PAT)** instead of a password.
 
 ---
 
