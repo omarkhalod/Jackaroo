@@ -52,8 +52,6 @@ Before you begin, make sure you have:
 - ✅ **Git** installed ([Download Git](https://git-scm.com/downloads))
 - ✅ **Eclipse IDE** installed ([Download Eclipse](https://www.eclipse.org/downloads/))
 - ✅ **Java & JavaFX** configured in your environment.
-- ✅ **Access to the repository** (You must be added as a collaborator).
-- ✅ **GitHub Authentication:** If the repository is private and you have 2FA enabled, you must use SSH or a [Personal Access Token (PAT)](https://github.com/settings/tokens) instead of a password.
 
 ### 2️⃣ Clone the Repository
 
@@ -62,10 +60,8 @@ Before you begin, make sure you have:
 1. Open a terminal (Command Prompt, Git Bash, or PowerShell).
 2. Run the following command:
 
-       git clone https://github.com/omarkhalod/Jackaroo.git
-
-3. If prompted for a password, use your Personal Access Token (PAT) instead of your GitHub password.
-4. After cloning, navigate to the project folder:
+       git clone https://github.com/omarkhalod/Jackaroo
+3. After cloning, navigate to the project folder:
 
        cd Jackaroo
 
