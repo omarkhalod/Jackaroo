@@ -23,9 +23,10 @@ Welcome to WHITE SPACE. You have been playing Jackaroo here for as long as you c
 
 Here is a glimpse into the game!
 
-<div align="center">
-https://github.com/user-attachments/assets/53844b26-2559-4152-8826-f51d5d0d3c3c
-</div>
+
+https://github.com/user-attachments/assets/d5d0b9fe-3186-47d5-b819-82bf70d1dbe0
+
+
 
 ### Screenshots
 
@@ -69,3 +70,4 @@ Before you begin, make sure you have:
 2. Run the following command:
    ```bash
    git clone [https://github.com/omarkhalod/Jackaroo.git](https://github.com/omarkhalod/Jackaroo.git)
+   
