@@ -28,13 +28,6 @@ https://github.com/user-attachments/assets/d5d0b9fe-3186-47d5-b819-82bf70d1dbe0
 
 
 
-### Screenshots
-
-- ![Main Menu](assets/screenshot1.png)
-- ![Winning Screen](assets/screenshot2.png)
-
----
-
 ## 🎲 Quick Rules & Card Mechanics
 
 Jackaroo uses a standard deck of cards to move marbles around the board. Here is a quick reference table for the special card effects:
@@ -68,6 +61,27 @@ Before you begin, make sure you have:
 
 1. Open a terminal (Command Prompt, Git Bash, or PowerShell).
 2. Run the following command:
-   ```bash
-   git clone [https://github.com/omarkhalod/Jackaroo.git](https://github.com/omarkhalod/Jackaroo.git)
-   
+
+       git clone https://github.com/omarkhalod/Jackaroo.git
+
+3. If prompted for a password, use your Personal Access Token (PAT) instead of your GitHub password.
+4. After cloning, navigate to the project folder:
+
+       cd Jackaroo
+
+### 3️⃣ Running in Eclipse
+
+1. Open Eclipse IDE.
+2. Go to `File` > `Import` > `General` > `Projects from Folder or Archive`.
+3. Select the `Jackaroo` folder you just cloned and click `Finish`.
+4. Ensure your JavaFX library is added to the project's Build Path.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Language:** Java
+- **Framework:** JavaFX
+- **IDE:** Eclipse
+
+---
